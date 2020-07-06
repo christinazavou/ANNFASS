@@ -1,1 +1,0 @@
-- ModelNet40
