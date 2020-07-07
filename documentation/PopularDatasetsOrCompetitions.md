@@ -5,4 +5,7 @@
 - Princeton Segmentation Benchmark
 - ABC dataset (Koch et al. 2019)
 - PartNet dataset (Mo et al. 2019)
+- ShapeNetCore 
+    - airplane, bag, cap, car, chair, earphone, guitar, knife, lamp, laptop, morotbike, mug, pistol, rocket, skateboard, table
+- Trimple Warehouse
 

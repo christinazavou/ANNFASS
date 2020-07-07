@@ -39,8 +39,44 @@ the resulting transformation can learn some rotational invariance if training sa
 3. EdgeConv Layer
 4. FC Layer
 
+##### Training with ABC dataset (boundary labels provided)
+1. from 3D mesh --> extract point cloud using poisson disc sampling
+2. then extract more samples specifically on boundary location (to make sure we have boundaries in our input)
+3. then remove any initial samples on the boundary location (with distance equal to same poisson)
+4. we add gaussian noise to the final point cloud
+
+##### Training with PartNet dataset (boundary labels not provided; semantic parts provided)
+1. sample the surface
+2. approximate as boundary points the ones that have in their neighborhood points with different part label
+
+##### Loss
+weighted cross entropy
+    
+    setting the weight to the ratio of boundary points over non boundary points!! 9so each input has different weight)
+
+##### Evaluation (Cole et al. 2008)
+Precision & Recall & F1score : 
+    
+    TP for precision: predicted boundary points that are near real boundary points up to a distance ε
+    TP for recall: annotated(real) boundary points that are near predicted boundary points
+    FP for precision: predicted boundary points that are far from real boundary points more than a distance ε
+    FN for recall: real boundary points that are far from predicted boundary points
+    
+Boundary Intersection over Union (bIoU) (Liu et al. 2020):
+    
+    measures overlap between annotated boundaries and predicted ones
+    (TP_precision + TP_recall) / (|boundaries_gt| + |boundaries_pred|)
+
+(note: similarly in semantic shape segmentation we use shape IoU metric)
+
+Chamfer Distance
+
+    euclidean distance from annotated boundary samples to nearest boundary predicted points and vice versa
+    CD = CD(pred=>gt) + CD(gt=>pred)
+
 ### My questions
 - how is the graph network realised? 
 - how is the graph cuts formulated?
 - is edge feature relative to start point or global point?
 - "if training samples enough global shape rotations and local part rotations" means if we take multiple point clouds for the same 3D shape and multiple point neighborhoods?
+- what is poisson disc sampling?
