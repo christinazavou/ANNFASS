@@ -103,25 +103,49 @@ The NN needs to be invariant of certain geometric transformations. Therefore the
 
 - PointNets can be applied to multiple 3D recognition tasks
     - shape classification:
-        - evaluation on ModelNet40 shape classification benchmark
+        - (train and) evaluation on ModelNet40 shape classification benchmark
         - split into 9,843 for training and 2,468 for testing
         - uniformly sample 1024 points on mesh faces according to mesh face area and normalize them into a unit sphere
         - _**during training we augment the point cloud on-the-fly by randomly roatating the object along the up-axis and jitter the position of each points by a Gaussian noise with zero mean and std 0.02**_
     - object part segmentation
         - we need to assign label to each point on the point cloud or to each face on the mesh
-        - evaluation on ShapeNet part data set
+        - (train and) evaluation on ShapeNet part data set
         - formulate as per-point classification problem
         - use mIoU on points as evaluation metric
-- Visualization of what the network learns
+        - to also test (only inference) the method on incomplete data they generate incomplete point clouds from 6 viewpoints for each shape..
+    - semantic segmentation in scenes:
+        - (train and) evaluation on Stanford 3D semantic parsing data
+        - for training data: split points per room & sample rooms into blocks 1m x 1m
+        - each point is represented by: X,Y,Z,R,G,B and normalized location as to the room (from 0 to 1) i.e. N_x,N_y,N_z
+        - at training time we randomly sample 4096 points in each block on the fly
+        - at test time we test on all the points
+    
+- Architecture experiments: for the order-invariance:
+    - as a symmetry operation they tried:
+        - max pooling
+        - average pooling
+        - attention based weighted sum: a score is predicted frm each point feature and then it's normalized across points by computing a softmax
 
-- Analysis of time and space complexity
+- Architecture experiments: using T-net
+    - using input transformation gives performance boost
+    - using input and feature transformation + regularization term in loss gives the best performance
+
+- Architecture experiments: robustness
+    - when 50% points are missing accuracy only drops by 2.4%
+
+- Visualization of what the network learns
+    - visualization of **_critical point sets C_s_**: THOSE CONTRIBUTED TO THE MAX POOLED FEATURE
+        - shows that they summarize the skeleton of the shape
+    - and **_upper bound shapes N_s_**: the largest possible point cloud that give the same global shape feature f(S) as the input point cloud S. (i.e. includes all points on the surface..but not inside points .. this is useful to compare if an object belongs to same shape..)
+
+- Analysis of time (floating-point operations/sample) and space (number of parameters in the network) complexity
 
 
 #### My questions
 1. ~~what does he mean in abstract "which well respects the permutation invariance of points in the input" ?~~that PointNet is robust to small perturbation of input points as well as to corruption through point insertion (outliers) or deletion (missing data).
 2. in table 1 what does he mean "#Views" ? what is "modelNet40" ? i guess some dataset for classification..
 3. what is "furthest sampling" mentioned in fig.6?
-4. how is retrieval done (e.g. fig.12)?
+4. ~~how is retrieval done (e.g. fig.12)?~~ usually they compare upper bound shapes...plus other information can be used..i don't know what they did here..
 5. how are correspondence pairs found in fig.13?
 6. as far as i understand from fig. 21 and 22 the CAD models and the kinect scans can be 'translated' in point clouds!? (and then we give them as inputs and then we get segmentation as output)
 7. how are the 3 approaches for input invariance shown in fig.5? basically either by stacking mlp as rnn cells and starting from a random point traverse all or by sorting all points and applying one mlp (ALWAYS SAME INPUT POINT CLOUD SIZE?) or by applying an mlp on each point and then MLP on top we can successfully tackle the task and keep invariance on input ?!

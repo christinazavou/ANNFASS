@@ -11,3 +11,8 @@ competition dataset: ShapeNetCore
  - Guo et al.
  - ShapePFCN
 
+
+
+
+MVCNN
+Subvolume (3D CNN)
