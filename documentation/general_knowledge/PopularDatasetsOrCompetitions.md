@@ -1,0 +1,15 @@
+- ModelNet40
+    - 12,311 CAD models from 40 man-made object categories
+- ShapeNet
+    - 16,881 shapes from 16 categories, annotated with 50 parts in total
+    - most object categories are labeled with two to five parts
+    - ground truth annotations are labeled on sampled points on the shapes
+- LPSB
+- COSEG
+- Princeton Segmentation Benchmark
+- ABC dataset (Koch et al. 2019)
+- PartNet dataset (Mo et al. 2019)
+- ShapeNetCore 
+    - airplane, bag, cap, car, chair, earphone, guitar, knife, lamp, laptop, morotbike, mug, pistol, rocket, skateboard, table
+- Trimple Warehouse
+
