@@ -21,3 +21,5 @@
     - airplane, bag, cap, car, chair, earphone, guitar, knife, lamp, laptop, morotbike, mug, pistol, rocket, skateboard, table
 - Trimple Warehouse
 - Stanford 
+- ModelNet10 (voxelized 3D shapes for object classification)
+- RueMonge2014 (for semantic segmentation)

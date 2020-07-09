@@ -16,3 +16,8 @@ competition dataset: ShapeNetCore
 
 MVCNN
 Subvolume (3D CNN)
+
+
+
+
+OctNet (2017)
