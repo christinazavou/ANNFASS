@@ -1,0 +1,12 @@
+version: "3.4"
+services:
+  tfcode:
+    container_name: tfcode
+    image: dezavou/tfcode:1.0.0
+    build:
+      context: ./tf-example
+      target: debug
+    volumes:
+      - ./python/src/:/work
+    ports:
+      - 5678:5678
