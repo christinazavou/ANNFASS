@@ -7,6 +7,6 @@ services:
       context: ./tf-example
       target: debug
     volumes:
-      - ./python/src/:/work
+      - ./tf-example/src/:/work
     ports:
       - 5678:5678

@@ -29,10 +29,12 @@ FROM base as debug
 RUN pip3 install ptvsd
 
 WORKDIR /work/
+# CMD venv/bin/python -m ptvsd --host 0.0.0.0 --port 5678 --wait usetf.py
 CMD python -m ptvsd --host 0.0.0.0 --port 5678 --wait usetf.py
 
 ######## START NEW IMAGE: PRODUCTION ########
 FROM base as prod
+WORKDIR /work/
 CMD python usetf.py
 
 
