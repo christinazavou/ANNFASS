@@ -3,11 +3,12 @@
 env_name=$1
 envs_path=$2
 cuda_version=$3
+py_version=$4
 
 # if miniconda is not in the path (e.g. because we dont want it to be the default python) then "conda" is not a recognized command
 export PATH=/home/christina/miniconda3/bin/:$PATH
 
-conda create --name $env_name
+conda create --name $env_name python=$py_version
 
 scripts_path=$envs_path/$env_name/etc/conda
 
