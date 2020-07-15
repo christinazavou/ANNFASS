@@ -30,13 +30,15 @@ init-VCG2: rm-VCG2
 	export PATH=/home/christina/miniconda3/bin/:$$PATH && source activate VCG2 && conda install pytorch torchvision cudatoolkit=10.1 -c pytorch
 
 # lab pc
-# note: we need to switch from driver 410 to driver 384 ..
-
-conda-update:
-    conda update conda && conda update python && conda update --all
-
-rm-tf-gpu:
-	conda deactivate && conda env remove -n tf-gpu
-
-init-tf-gpu: rm-tf-gpu
-	 conda create --name tf-gpu && source activate tf-gpu && conda install tensorflow-gpu
+# note: i switched from driver 410 to driver 384 .. but still using only conda was complaining about driver...
+#conda-update:
+#	conda update conda && conda update python && conda update --all
+#
+#rm-tf-gpu:
+#	conda env remove -n tf-gpu
+#
+#init-tf-gpu: rm-tf-gpu
+#	conda create --name tf-gpu && source activate tf-gpu && conda install tensorflow-gpu
+#so i downloaded cuda10.0
+#i run sudo sh cuda_10.0.130_410.48_linux.run --silent --toolkit --toolkitpath=/usr/local/cuda-10.0
+#but not enough space ...
