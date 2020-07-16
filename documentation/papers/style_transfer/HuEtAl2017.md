@@ -23,8 +23,19 @@ translate high-level style descriptions (e.g. chineese, european) for furniture 
 ##### Result
 They demonstrate that the co-location of style-defining elements allows to solve problems like style classification and is useful for: style revealing view selection, style-aware sampling, style-driven modeling for 3D shapes.
 
+They presented a method for:
+    - discovering defining elements thst characterize a given style (where the elements are co-located across the shapes of the style) including both positive and negative elements of the style
+
+They evaluated with:
+    - qualitative method
+    - quantitative method
+
+They presented:
+    - examples of style-aware applications
+
 ### Interesting
 - see in fig.12 in Building shapes it's the most confusing style elements...i.e. elements of style 'european' can appear in buildings that are of style 'chineese' etc
+- in fig 16 i see that they learn SVM detector for each element
 
 ### My Questions
 1. is the goal to clusterize the 3D objects according to their style ?
@@ -34,6 +45,8 @@ They demonstrate that the co-location of style-defining elements allows to solve
 5. as i understood from fig7 the metric to get the style is using histograms comparison of the object under examination versus the overall stylistic category histogram!?
 6. from fig.8...do we use a NN that's why we need positive and negative examples? do we train a NN for each class(style) ? are the elements just random small pieces with the label of the object's style?
 7. in fig.12 how did they found (compare) that some elements of one style exist in shapes of other styles?
-
-
+8. from fig.14 the conclusion is that the method always retrieved objects of the correct category but not always matching the first selection of people's rank lists?!
+9. from fig.19 i see their method is two-step. which are these two steps ?
+10. _**how is saliency image calculated in fig.21?**_ also..i would think that saliency points are the ones to be examined for the style :/
+11. how is the sampling done in fig22?
 

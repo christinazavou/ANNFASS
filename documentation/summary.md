@@ -21,3 +21,6 @@ Subvolume (3D CNN)
 
 
 OctNet (2017)
+
+
+LimEtAl2016-->interesting for us as well to use images of buildings annotated online!
