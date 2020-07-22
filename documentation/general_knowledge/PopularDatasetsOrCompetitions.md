@@ -23,3 +23,6 @@
 - Stanford 
 - ModelNet10 (voxelized 3D shapes for object classification)
 - RueMonge2014 (for semantic segmentation)
+
+
+- SHREC16 (3D object retrieval competition)
