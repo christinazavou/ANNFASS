@@ -68,6 +68,13 @@ Copyright (c) 2005-2019 NVIDIA Corporation
 Built on Fri_Feb__8_19:08:17_PST_2019
 Cuda compilation tools, release 10.1, V10.1.105
 ```
+and on the laptop of ubuntu 18 it showed:
+```
+nvcc: NVIDIA (R) Cuda compiler driver
+Copyright (c) 2005-2019 NVIDIA Corporation
+Built on Sun_Jul_28_19:07:16_PDT_2019
+Cuda compilation tools, release 10.1, V10.1.243
+```
 
 7. Back to O-CNN project (under /octree/build) I run
 ```
@@ -88,7 +95,55 @@ i was getting some numpy warnings so i run
 conda install gast==0.2.2 numpy==1.16.4
 ```
 
+9. Then in /tensorflow/scripts i run:
+```
+python ../data/cls_modelnet.py --run download_m40_points
+python ../data/cls_modelnet.py --run m40_generate_octree_tfrecords
 
+``` 
+python run_cls.py --config configs/cls_octree.yaml
+where cls_octree.yaml contains:
+
+``` 
+SOLVER:
+  gpu: 0,
+  logdir: logs/m40/0322_ocnn_octree
+  run: train
+  max_iter: 160000
+  test_iter: 925
+  test_every_iter: 100
+  step_size: (400,)
+
+DATA:
+  train:
+    dtype: octree
+    distort: True
+    depth: 5
+    location: dataset/ModelNet40/m40_5_2_12_train_octree.tfrecords 
+    batch_size: 2
+    x_alias: data
+  test: 
+    dtype: octree
+    distort: False
+    depth: 5
+    location: dataset/ModelNet40/m40_5_2_12_test_octree.tfrecords
+    shuffle: 0
+    batch_size: 2
+    x_alias: data
+
+MODEL:
+  name: ocnn
+  channel: 3
+  nout: 40
+  depth: 5
+
+LOSS:
+  num_class: 40
+  weight_decay: 0.0005
+```
+
+
+Now it runs on laptop. But on pc i get the alloc issue.
 Other attributes of the pc:
 
     - gpu card GeForce GTX 1080 Ti
