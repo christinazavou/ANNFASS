@@ -29,7 +29,14 @@ init-VCG2: rm-VCG2
 	sh make_env_for_pytorch.sh VCG2 10.1 3.8
 	export PATH=/home/christina/miniconda3/bin/:$$PATH && source activate VCG2 && conda install pytorch torchvision cudatoolkit=10.1 -c pytorch
 
-# lab pc:
+rm-OCNN:
+	export PATH=/home/christina/miniconda3/bin/:$$PATH && conda env remove -n OCNN
+
+init-OCNN: rm-OCNN
+	sh make_env_for_tf.sh OCNN /home/christina/miniconda3/envs 10.1 3.7
+	export PATH=/home/christina/miniconda3/bin/:$$PATH && source activate OCNN && conda install -c anaconda tensorflow-gpu==1.14.0 && conda install -c anaconda pytest
+
+# zavou laptop or lab pc:
 # note: for the following to work i switched from driver 410 to driver 430
 # note: works also on my laptop
 conda-update:
@@ -46,10 +53,3 @@ rm-tf1-gpu:
 
 init-tf1-gpu: rm-tf1-gpu
 	conda create --name tf1-gpu && source activate tf1-gpu && conda install tensorflow-gpu==1.15
-
-rm-OCNN:
-	export PATH=/home/christina/miniconda3/bin/:$$PATH && conda env remove -n OCNN
-
-init-OCNN: rm-OCNN
-	sh make_env_for_tf.sh OCNN /home/christina/miniconda3/envs 10.1 3.7
-	export PATH=/home/christina/miniconda3/bin/:$$PATH && source activate OCNN && conda install -c anaconda tensorflow-gpu==1.14.0 && conda install -c anaconda pytest
