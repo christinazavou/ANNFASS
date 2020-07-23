@@ -87,3 +87,14 @@ i was getting some numpy warnings so i run
 ```commandline
 conda install gast==0.2.2 numpy==1.16.4
 ```
+
+
+Other attributes of the pc:
+
+    - gpu card GeForce GTX 1080 Ti
+
+    - running command "free -h" gives:
+                      total        used        free      shared  buff/cache   available
+        Mem:            15G        4,5G        2,9G         91M        8,2G         10G
+        Swap:          7,6G         33M        7,6G
+        
