@@ -95,7 +95,7 @@ i was getting some numpy warnings so i run
 conda install gast==0.2.2 numpy==1.16.4
 ```
 
-9. Then in /tensorflow/scripts i run:
+9. Then in /tensorflow/script i run:
 ```
 python ../data/cls_modelnet.py --run download_m40_points
 python ../data/cls_modelnet.py --run m40_generate_octree_tfrecords
@@ -143,7 +143,7 @@ LOSS:
 ```
 
 
-Now it runs on laptop. But on pc i get the alloc issue.
+Now it runs on laptop (tried with batch 2,4,8 and it's all fine). But on pc i get the alloc issue.
 Other attributes of the pc:
 
     - gpu card GeForce GTX 1080 Ti
