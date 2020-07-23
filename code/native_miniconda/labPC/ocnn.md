@@ -1,20 +1,20 @@
-1. cloned the repo
-2. removed cmake and installed the needed cmake version
+1. I cloned the repo on ubuntu 16
+2. I removed cmake and installed cmake version 3.18.0
 
-3. run
+3. I run
 ```
 cd octree/external && git clone --recursive https://github.com/wang-ps/octree-ext.git
 cd .. && mkdir build && cd build
 ```
 
-4. installed cuda10.0 with
+4. installed cuda10.1 with
 ```
-sudo sh cuda_10.0.130_410.48_linux.run --silent --toolkit --toolkitpath=/usr/local/cuda-10.0
+sudo sh cuda_10.1.105_418.39_linux.run --silent --toolkit --toolkitpath=/usr/local/cuda-10.1
 ```
 
-5. run
+5. Then I run
 ```
-sh make_env_for_tf.sh OCNN /home/graphicslab/miniconda3/envs 10.0 3.7
+sh make_env_for_tf.sh OCNN /home/graphicslab/miniconda3/envs 10.1 3.7
 source activate OCNN && conda install -c anaconda tensorflow-gpu==1.14.0 && conda install -c anaconda pytest
 ```
 where make_env_for_tf.sh is:
@@ -56,7 +56,7 @@ unset ORIGINAL_PATH
 unset ORIGINAL_CUDA_DIR""" >> "$scripts_path/deactivate.d/deactivate.sh"
 ```
 
-5. activated the python environment with setting cuda paths:
+5. I activated the python environment (which also sets cuda paths):
 ```
 source activate OCNN
 nvcc --version 
@@ -64,13 +64,26 @@ nvcc --version
 this showed:
 ```
 nvcc: NVIDIA (R) Cuda compiler driver
-Copyright (c) 2005-2018 NVIDIA Corporation
-Built on Sat_Aug_25_21:08:01_CDT_2018
-Cuda compilation tools, release 10.0, V10.0.130
+Copyright (c) 2005-2019 NVIDIA Corporation
+Built on Fri_Feb__8_19:08:17_PST_2019
+Cuda compilation tools, release 10.1, V10.1.105
 ```
 
-7. back to O-CNN project run
+7. Back to O-CNN project (under /octree/build) I run
 ```
 cmake ..  && cmake --build . --config Release
 export PATH=`pwd`:$PATH
+```
+
+8. to use the tensorflow code i run the following (starting from octree/build and having OCNN environment activated): 
+```commandline
+conda install -c conda-forge yacs tqdm
+cmake .. -DUSE_CUDA=ON && make
+cd ../../tensorflow/libs
+python build.py
+```
+
+i was getting some numpy warnings so i run
+```commandline
+conda install gast==0.2.2 numpy==1.16.4
 ```

@@ -4,12 +4,10 @@ SHELL := /bin/bash # otherwise we can't use "source"
 
 rm-OCNN:
 	conda env remove -n OCNN
-#	export PATH=/home/graphicslab/miniconda3/bin/:$$PATH && conda env remove -n OCNN
 
 init-OCNN: rm-OCNN
-	sh make_env_for_tf.sh OCNN /home/graphicslab/miniconda3/envs 10.0 3.7
+	sh make_env_for_tf.sh OCNN /home/graphicslab/miniconda3/envs 10.1 3.7
 	source activate OCNN && conda install -c anaconda tensorflow-gpu==1.14.0 && conda install -c anaconda pytest
-#	export PATH=/home/christina/miniconda3/bin/:$$PATH && source activate OCNN && conda install -c anaconda tensorflow-gpu==1.14.0 && conda install -c anaconda pytest
 
 conda-update:
 	conda update conda && conda update python && conda update --all
