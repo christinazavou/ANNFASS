@@ -153,3 +153,10 @@ Other attributes of the pc:
         Mem:            15G        4,5G        2,9G         91M        8,2G         10G
         Swap:          7,6G         33M        7,6G
         
+Other attributes of the laptop:
+    - gpu card GeForce GTX 1050
+    
+    - running command "free -h" gives:
+                          total        used        free      shared  buff/cache   available
+        Mem:            15G        6,1G        1,3G        223M        8,1G        8,9G
+        Swap:           15G         51M         15G
