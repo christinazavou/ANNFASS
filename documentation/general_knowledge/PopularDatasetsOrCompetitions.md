@@ -6,6 +6,8 @@
         - 16,881 shapes from 16 categories, annotated with 50 parts in total
         - most object categories are labeled with two to five parts
         - ground truth annotations are labeled on sampled points on the shapes
+        - represented as sparse point clouds with only about 3k points for each model
+
 - for semantic segmentation in scenes:
     - Stanford 3D 
         - 3D scans from Matterport scanners in 6 areas including 271 rooms
@@ -26,3 +28,8 @@
 
 
 - SHREC16 (3D object retrieval competition)
+
+- ShapeNetCore55 (shapes of triangle meshes)
+    - 51190 3D models with 55 categories and 204 subcategories-
+    - consistent upright orientation
+

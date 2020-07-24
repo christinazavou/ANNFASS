@@ -41,6 +41,8 @@ to efficiently do 3D convolutions with any kernel size:
 - much more efficient+successful than full-voxel approaches
 - experiments run on object classification, shape retrieval and shape segmentation
 
+classification is already performing well on resoltion 2^3 ..which means the network can recognize 3D shape easily from far away like a human..
+
 ##### Octree Construction
 1. uniformly scale the 3D shape into an axis-aligned unit 3D bounding cube
 2. then recursively subdivide the bounding cube of the 3D shape in breadth-first order
@@ -69,7 +71,84 @@ to efficiently do 3D convolutions with any kernel size:
     Note that if we have a batch of e.g. 4 3D objects to be used in a training step, these 4 objects will generate different octrees .. thus we need to do something for the efficient convolution of all at once. We merge these 4 octrees into one super-octree (concatenate vectors at each depth and do some re-calculations of keys etc)
     
 ##### CNN operations on the octree
+ for convolution basically we have: our feature vector that can be of shape widthxheightxchannels and our kernel that has a size in width, height and channel and we can have N kernels ... 
  
+ here, in OCNN, we have our octant feature (of n channels) and the convolution weights (filter) .. and we just do a matrix product 
+
+_**the convolution with kernel size K requires the access of K^3-1 neighboring octants of an octant (neighbor in any dir)**_
+keeping hash tables to access neighbors etc makes it possible and efficient ..
+searching only once for 8 octant children when stride is 1 or 2 makes it more efficient..
+
+for pooling, usually we do max pooling of kernel size 2 and stride 2 .. here because 8 children are stored consecutively we just pick max element out of 8 consecutive elements ..
+
+unpooling is up-sampling. usually we use max-unpooling.
+
+data storage and CNN computations are only applied in non empty octants.
+
+##### Architecture
+
+operation sequence applied at l-th depth octants:
+Ul defined as “convolution + BatchNormalization + ReLU + pooling”
+
+number of channels of the feature map for Ul is set to 2^max(1, 9-l)
+_**convolution kernel size is 3**_
+
+input ---> Ud ---> U(d-1) ----> ... ---> U2 
+(i guess we stop at U2 because we can't convolve with kernel size 3 in depth level 0 or 1 where we have one or two octants in each dir accordingly)
+
+1. For object classification:
+    - add two FC layers, a softmax layer, two dropout layers i.e. OCNN + Dorpout + FC + Dropout+ FC + Softmax
+2. For shape retrieval:
+    - _**use the output of object classification as the key to search for the most similar shapes to the query_** (i guess utilizing siamese network ?)
+3. For shape part segmentation:
+    - use deconvolution network after convolution network ==> OCNN ... + ...mirror of OCNN i.e. OCNN(d) ---> DU2 --> DU3 ---> DUd
+
+##### Experiments on:
+i7 3.2ghz, geforce 1080, 8gb memory
+
+##### Experiments use:
+SGD
+momentum 0.9
+weight decay 0.0005
+batch size 32
+dropout ratio 0.5
+initial lr 0.1, decreased by factor of 10 after every 10 epochs
+optimization stops after 40 epochs
+
+##### Training data for classification
+augment data: 12 poses for each model
+
+##### Experiments on classification
+loss function = cross entropy
+
+1. on resolution: 
+    OCNN(3), ...OCNN(8) i.e. resolution 8^3...resolution 256^3
+
+2. on input representation:
+    full voxel with binary signal (not OCNN but VoxNet)
+    full voxel with normal signal with zero vectors in empty voxels (not OCNN but VoxNet)
+    octree with normal signal (OCNN)
+    octree with binary signal (OCNN)
+
+##### Experiments on retrieval
+since we have 12 poses for each object, when we use the classification network we get one output vector for each of these 12 poses.
+then we can use pooling to get one output feature vector.
+For retrieval, we get the feature vector for all the shapes, and then we use vector distance to retrieve the most similar shapes.
+
+##### Experiments on part segmentation
+
+They used CRF refinement
+
+##### performance measures 
+- computation:
+    - average time per iteration
+    - peak GPU memory consumption
+- retrieval:
+    - precision
+    - recall
+    - mAP
+    - F-score
+    - NDCG
 
 ### Notes:
 - they didnt use different levels of octrees...i.e. dense and sparse areas had same octree level
@@ -104,3 +183,10 @@ _**3. in fig4...is it an example for when the 2D convolution kernel is less or e
 
 8. "The size of the vector is the number of the finest leaf octants in the octree." what does this means ?
 
+9. (fig.5) shouldnt the unpooling put everywhere the max value and not add zeros ?
+
+10. what is deconvolution in regular CNN?
+
+11. what is the concept of LeNet ?
+
+12. How is OCNN(d) ---> Ud2 ?
