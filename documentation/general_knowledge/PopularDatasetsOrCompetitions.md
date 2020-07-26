@@ -33,3 +33,7 @@
     - 51190 3D models with 55 categories and 204 subcategories-
     - consistent upright orientation
 
+
+- ModelNet10 dataset
+
+- NYUv2 dataset

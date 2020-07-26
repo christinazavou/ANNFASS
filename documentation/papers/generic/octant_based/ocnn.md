@@ -165,27 +165,28 @@ They used CRF refinement
     - they discard the pointers from parent octants to children octants (as in traditional octree) and introduce a label array for finding correspondence of octants at different depths for downsampling.
     - instead of computing the neighborhood of a single octant, they construct the neighborhoods for eight children nodes of a parent node for fast CNN computations
 
+- note that octree is just the representation of data... so still to do convolution they will get the needed voxels (octants) to represent the needed 3D space for the convolution and use a 3D filter and do proper 3Dconvolution!![](../../../figures/octreeConv.png)
+
+                      
 ### My Questions
 
 1. so..from fig2..if within a space there are many empty voxels then we have in some deep layers really sparse and big vectors.. correct ? so is using sparse matrices (tensorflow/numpy etc) really useful or is this anyway an issue?
 
 2. as i understand from the "how" section .. _**we have efficient convolution as each level can be convoluted at once and efficient pooling as there is directly pointing to correspondence in other levels!? :)**_
 
-_**3. in fig4...is it an example for when the 2D convolution kernel is less or equal to 3 !? i.e. if kernel was 5x5 we take more octants but still union them!?**_ (he also mentions in related work that instead of calculating neighborhood of one octant we calculate for 8 octants .. so always eight ? is it 8 because of the 8 children ? how are convolutions then if kernel size is bigger than that ?)
+3. ~~_**in fig4...is it an example for when the 2D convolution kernel is less or equal to 3 !? i.e. if kernel was 5x5 we take more octants but still union them!?**_ (he also mentions in related work that instead of calculating neighborhood of one octant we calculate for 8 octants .. so always eight ? is it 8 because of the 8 children ? how are convolutions then if kernel size is bigger than that ?)~~ I think yes, that's why they always keep convolution kernel size 3.
 
 4. ~~assigning T and L in fig5 ..?~~
 
-5. in table1 where we see 32^3 resolution of voxels, does it mean 2^5=32..so 5 depth octree needed, so 5 O-CNN layers?!
+5. ~~in table1 where we see 32^3 resolution of voxels, does it mean 2^5=32..so 5 depth octree needed, so 5 O-CNN layers?!~~ Probably yes because they use depth 5 in implementation.
 
 6. i guess the xi,yi,zi that is represented by 0 or 1 is like 'left' or 'right' in that direction !?
 
-7. "in our implementation, each shuffle key is stored in a 32 bit integer." does it mean 32/3=10.7i.e. maximum octree depth 10 ?!
+8. _**"The size of the vector is the number of the finest leaf octants in the octree." what does this means ? i thought they store average normal vector on each octant thus if finest octant leafs are 6 in total then we have concatenation of 6 vectors of size 3 (i.e. nx,ny,nz) or is the average normal represented by an integer number like the {0,1} positions explained for keys?**_
 
-8. "The size of the vector is the number of the finest leaf octants in the octree." what does this means ?
+9. **_(fig.5) shouldnt the unpooling put everywhere the max value and not add zeros ?_**
 
-9. (fig.5) shouldnt the unpooling put everywhere the max value and not add zeros ?
-
-10. what is deconvolution in regular CNN?
+10. _**what is deconvolution in regular CNN?**_
 
 11. what is the concept of LeNet ?
 

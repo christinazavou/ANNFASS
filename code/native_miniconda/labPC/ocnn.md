@@ -160,3 +160,7 @@ Other attributes of the laptop:
                           total        used        free      shared  buff/cache   available
         Mem:            15G        6,1G        1,3G        223M        8,1G        8,9G
         Swap:           15G         51M         15G
+
+
+also:
+conda install -c anaconda keras-gpu
