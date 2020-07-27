@@ -13,6 +13,10 @@ Upsampling refers to any technique that upsamples your image to a higher resolut
     ![](../figures/unpooling.png)
     To perform unpooling, we need to remember the position of each maximum activation value when doing max pooling, as shown above. Then, the remembered position is used for unpooling as shown above.
     
+    https://github.com/sangeet259/tensorflow_unpooling
+    
+    https://gist.github.com/rkawajiri/6df312f9fa65afed50448bf00d782c0d
+    
 - Deconvolution (Inverse Convolution / Transposed Convolution / Up Convolution / Fractional Convolution):
 
     Another way of upsampling usually used with convolutional neural networks. Denotes **a sort of** reverse convolution. 
@@ -200,6 +204,13 @@ _________________________________________________________________
  [3. 0. 4. 0.]
  [0. 0. 0. 0.]]
 ```
+
+NOTE:
+if we want to apply 7x7 stride, 'same' padding and kernel 3x3 any of these input shapes:
+ 22x22,22x23,..22x28,...28x28 
+ will output a 4x4 shape because output dimension = ceiling(input dimension / stride)
+ Thus applying Conv2DTranspose with kernel 3x3 and stride 7x7 leads to umbiguity of what output must give.. this is why the Conv2DTranspose has the parameter output_padding
+
 
 Unpooling and Deconvolution
 ---

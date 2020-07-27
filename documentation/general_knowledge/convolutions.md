@@ -41,3 +41,37 @@ output shape is 126x126x126x1
 
 input shape is height, width, depth, channels
 
+
+Padding
+---
+
+1. "VALID" = without padding
+```
+ 1  2  3  4  5  6  7  8  9  10 11 (12 13)
+                  |________________|                dropped
+                                 |_________________|
+```
+
+i.e. "VALID" only ever drops the right-most columns (or bottom-most rows).
+
+naming: With "VALID" padding, there's no "made-up" padding inputs. The layer only uses valid input data.
+
+2. "SAME" = with zero padding
+``` 
+pad|                                      |pad
+   inputs:      0 |1  2  3  4  5  6  7  8  9  10 11 12 13|0  0
+               |________________|
+                              |_________________|
+                                             |________________|
+```
+
+i.e. "SAME" tries to pad evenly left and right, but if the amount of columns to be added is odd, it will add the extra column to the right, as is the case in this example (the same logic applies vertically: there may be an extra row of zeros at the bottom).
+
+naming: With "SAME" padding, if you use a stride of 1, the layer's outputs will have the same spatial dimensions as its inputs.
+
+
+Pooling
+---
+note that you can use stride also in the pooling layer!
+
+e.g. input size 110x110, max pool of size 3x3 and stride 2 ==> output shape will be 55x55!
