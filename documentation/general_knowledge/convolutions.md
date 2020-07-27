@@ -17,6 +17,9 @@ tf.keras.layers.Conv2D(
 usually we do the same WidthxHeight convolution in each channel and then all channels are merged with sum or average for example into one number. That's why at the end, if we use 4 filters in our convolution layer we will end up with 4 channels in the output.
 
 
+Typically, the stride of a convolutional layer is (1×1), i.e. a filter is moved along one pixel horizontally for each read from left-to-right, then down pixel for the next row of reads. A stride of 2×2 on a normal convolutional layer has the effect of downsampling the input, much like a pooling layer. (i.e. we can use conv2d with 2×2 stride instead of conv2d + pooling)
+
+
 ### 1D convolution
 (used usually with time series)
 
