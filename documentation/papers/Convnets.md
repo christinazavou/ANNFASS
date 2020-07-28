@@ -24,7 +24,7 @@ concolution layer + max pooling + local contrast operation that normalizes respo
 N labeled images {x,y}
 cross entropy loss
 
-##### Visualization with a Deconvnet
+##### Visualization with a **Deconvnet**
 To start, an input image is presented to the convnet and features computed throughout the layers. To examine a given convnet activation, we set all other activations in the layer to zero and pass the feature maps as input to the attached deconvnet layer.
 Then we successively (i) unpool, (ii) rectify and (iii) filter to reconstruct
 the activity in the layer beneath that gave rise to the chosen activation. This is then repeated until input pixel space is reached
@@ -43,6 +43,30 @@ outperform models on ImageNet classification benchmark (and on Caltech101 and Ca
 
 3. notice in fi7 the difference between features of hidden encoding (convolutional) layers and output classification layer .. e.g. strongest feature in layer 5 is the letters but the classifier is most sensitive to the wheel!
 
+4. One shortcoming of the deconvnet is that it only visualizes a single activation, not the joint activity present in the layer
+
+5. certain layers need different time to converge
+
+6. by visualizing the layers' activations they found out that smaller conv filters are worse ..
+
+### From Video presentations
+
+![](../figures/deconv1.png)
+
+"To visualize, we select a single feature map to look at..and we take the strongest activation in that map and that input image.
+ This is used as input to the Deconv Layer (which uses the same switches for pool/unpool and same filters for conv/deconv) to construct the output in the pixel space. In fact we want to take max activation over all input images. And in fact we want to visualize all feature maps in all layers. So we take max activation for each feature map over all images."
+
+ ![](../figures/deconv2.png)
+ 
+ ![](../figures/deconv4.png)
+
+ ![](../figures/deconv3.png)
+
+"from unpooling we implicitly get some local rotation invariance"
+
+"even though there is no class `text` the model learned to associate text with the car class"
+![](../figures/deconv5.png)
+ 
 ### My Questions
 1. in fig2, they project the activations of one layer into pixel space using deconv approach.. do they mean that the deconv filters of size MxM into initial pixel size NxN or they show pixels fo layer size i.e. MxM ? if it's the first ... are all papers showing activations using deconv? (also in fig7 how is the projection done?!)
 
@@ -51,3 +75,11 @@ outperform models on ImageNet classification benchmark (and on Caltech101 and Ca
 3. ~~in fig7 what is the purpose of the grey square in the input ? to add noise in training data? or to see that is the activations and labels at the grey i.e. if it understands missing part?!~~ it is to see the activations and class probabilities when the grey pixel moves around the parts of the input image!
 
 4. what is "contrast operation that normalizes responses across feature maps"?
+
+5. when they say "for each feature map take max activation over all inputs" what does it mean ? taking max values over each point of the feature map ? i.e. if 
+   input 1 in layer is 
+   [[1,1,1],[2,2,2]] and one filter gives activation map 
+   [[1,2],[2,3]] and another activation map gives 
+   [[3,3],[2,2]] and for another input we get for first map
+   [[1,4],[2,2]] and for second filter we get feature map 
+   [[2,2],[3,3]] then result is for map 1 of the layer take [[1,4],[2,3]] and for map 2 of layer take [[3,3],[3,3]] !?
