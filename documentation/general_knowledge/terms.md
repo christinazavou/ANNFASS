@@ -81,3 +81,11 @@ log(odds) = log (5/3) or log (5/8 / 5/3)
 
 i.e. log(p/1-p) which is called **_"logit function"**_ (and is the basis of logistic regression!!)
 
+
+### Feature Map (in Convolutional Neural Networks)
+it is the output of an input convolved with a filter
+
+### Activation Volume (in Convolutional Neural Networks)
+if e.g. input shape is 10 x 10 and filters used in convolution layer are 4 filters of 3x3 then activation volume is the resulting 8x8x4
+
+_**Activation map**_ is each of the 8x8 results.

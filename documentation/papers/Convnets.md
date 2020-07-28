@@ -9,10 +9,16 @@ introduce a technique to visualize CNNs to understand better the intermediate fe
 ##### How: Visualization Technique
 By a multi-layered Deconvolutional Network that projects the feature activations back to the input pixel space!
 
-##### Problem
+##### Problem (also look at: https://www.youtube.com/watch?v=6wcs6szJWMY)
 until now visualizing features was limited to:
-- 1st layer visualization where projections to the pixel space are possible
-- hard & inaccurate visualization in the other layers
+- 1st layer visualization where projections to the pixel space are possible (because we can get the inner product of input image and a filter we can just visualize that filter as a small image ... the first layer almost always shows filters that focus on edges,corners,blobs. Note: when you take an inner product, the vector that maximimizes your inner product is a vector that looks like your other vector. So if a part of an image, A, maximizes the inner product of A and a filter, B, then we know how B looks like .. i.e. looks like that part of that image ..**so do we visualize the filter as it is or the part of the image that maximizes the inner product with the filter!?**)
+
+- hard & inaccurate visualization in the other layers (e.g. how to visualize filters of shape 20x7x7x16 ? we can visualize 16 images of shape 20x7x7 but its not so interpretable. However visualizing feature maps is interpretable in some cases... still a feature map of shape 128x13x13 needs to be viewed as 128 greyscale images of size 13x13 .. still how do you know what part of the image it is?)
+
+**_note also : by visualizing a filter we ignore the visualization of the bias and we also scale the filter's weights into 0-255_** 
+
+_note also: One approach to visualize what's learned in the last layer (of classification network .. i.e. long encoded vectors) is to visualize the images of the nearest K neighbours within semantic space ... i.e. visualize images where last layer gives similar vector to your test image vector -- even if not trained with triplet loss the encodings can give you similar vectors for similar images._
+
 
 ##### How: Analysis of classifier
 By occluding portions of the input image revealing which parts of the scene are important for classification.
