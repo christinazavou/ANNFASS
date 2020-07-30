@@ -34,7 +34,7 @@ rm-OCNN:
 
 init-OCNN: rm-OCNN
 	sh make_env_for_tf.sh OCNN /home/christina/miniconda3/envs 10.1 3.7
-	export PATH=/home/christina/miniconda3/bin/:$$PATH && source activate OCNN && conda install -c anaconda tensorflow-gpu==1.14.0 && conda install -c anaconda pytest
+	export PATH=/home/christina/miniconda3/bin/:$$PATH && source activate OCNN && conda install -c anaconda tensorflow-gpu==1.14.0 && conda install -c anaconda pytest scikit-learn && conda install -c conda-forge matplotlib && conda install -c anaconda tensorflow-datasets && conda install -c anaconda scikit-learn
 
 # zavou laptop or lab pc:
 # note: for the following to work i switched from driver 410 to driver 430

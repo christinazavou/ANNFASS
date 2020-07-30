@@ -83,9 +83,12 @@ i.e. log(p/1-p) which is called **_"logit function"**_ (and is the basis of logi
 
 
 ### Feature Map (in Convolutional Neural Networks)
-it is the output of an input convolved with a filter
+it is the output of an input convolved with a filter 
+e.g. input shape 100x100x3 and 20 filters of 3x3 and stride 1 gives output 98x98x20 which is the feature map
 
 ### Activation Volume (in Convolutional Neural Networks)
 if e.g. input shape is 10 x 10 and filters used in convolution layer are 4 filters of 3x3 then activation volume is the resulting 8x8x4
 
 _**Activation map**_ is each of the 8x8 results.
+
+(Feature Map = Activation Volume!!!)
