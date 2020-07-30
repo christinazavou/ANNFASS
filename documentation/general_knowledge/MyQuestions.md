@@ -1,0 +1,2 @@
+
+1. ~~pooling happens on one filter output and not among multiple filters' output right ?~~ in pooling (of 2D) we have a kernel of shape [samples, width, height, channels] which is usually set to [1, width, height, 1] so that one filter is pooled only among width and height, and the channel dimension remains the same (i.e. after convolving this is equal to the amount of filters). similarly there is a stride of shape [samples, width, height, channels] which is also usually set to [1, width, height, 1]

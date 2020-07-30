@@ -7,7 +7,7 @@ rm-OCNN:
 
 init-OCNN: rm-OCNN
 	sh make_env_for_tf.sh OCNN /home/graphicslab/miniconda3/envs 10.1 3.7
-	source activate OCNN && conda install -c anaconda tensorflow-gpu==1.14.0 && conda install -c anaconda pytest && conda install -c conda-forge matplotlib && conda install -c anaconda tensorflow-datasets && conda install -c anaconda scikit-learn
+	source activate OCNN && && conda install -c anaconda tensorflow-gpu==1.14.0  pytest && conda install -c conda-forge matplotlib tqdm yacs && conda install gast==0.2.2 numpy==1.16.4
 
 conda-update:
 	conda update conda && conda update python && conda update --all

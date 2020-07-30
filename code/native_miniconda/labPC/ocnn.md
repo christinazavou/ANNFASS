@@ -161,6 +161,3 @@ Other attributes of the laptop:
         Mem:            15G        6,1G        1,3G        223M        8,1G        8,9G
         Swap:           15G         51M         15G
 
-
-also:
-conda install -c anaconda keras-gpu
