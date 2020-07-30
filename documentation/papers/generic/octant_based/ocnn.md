@@ -167,6 +167,7 @@ They used CRF refinement
 
 - note that octree is just the representation of data... so still to do convolution they will get the needed voxels (octants) to represent the needed 3D space for the convolution and use a 3D filter and do proper 3Dconvolution!![](../../../figures/octreeConv.png)
 
+-  Because of the special hierarchical structure of an octree, the stride of convolution is constrained to be an integer power of 2
                       
 ### My Questions
 
@@ -191,3 +192,6 @@ They used CRF refinement
 11. what is the concept of LeNet ?
 
 12. How is OCNN(d) ---> Ud2 ?
+
+13. are weights in deconv same as in conv or not?
+
