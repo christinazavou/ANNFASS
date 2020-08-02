@@ -20,7 +20,7 @@ Supports various CNN structures
 Works for 3D shapes in different representations
 
 ##### Idea
-perform 3D CNN operations only on the sparse octants occupied by the boundaary surfaces of 3D shapes!! 
+perform 3D CNN operations only on the sparse octants occupied by the boundary surfaces of 3D shapes!! 
 
 so do convolution on sample points of leaf octrees (fine representation), pool and return result to higher nodes, do convolution on higher nodes etc... 
 
@@ -41,7 +41,7 @@ to efficiently do 3D convolutions with any kernel size:
 - much more efficient+successful than full-voxel approaches
 - experiments run on object classification, shape retrieval and shape segmentation
 
-classification is already performing well on resoltion 2^3 ..which means the network can recognize 3D shape easily from far away like a human..
+classification is already performing well on resolution 2^3 ..which means the network can recognize 3D shape easily from far away like a human..
 
 ##### Octree Construction
 1. uniformly scale the 3D shape into an axis-aligned unit 3D bounding cube
@@ -62,7 +62,7 @@ classification is already performing well on resoltion 2^3 ..which means the net
     Given a non-empty node with index j at the l-th depth, we compute the index k of its first child octant at the (l + 1)-th depth by k = 8 × (Ll[j] − 1)
     
     Input Signal <br>
-    input of CNN = the averaged normal vectors computed at the finest leaf octants. If the leaf octant is empty we use a zero vector. _**If the octant is non empty, we sample the 3D shape surface embedded in the leaf octant with a set of points and average the normals of all samples points as the input vector.**_ The size of the vector is the number of the finest leaf octants in the octree.
+    input of CNN = the averaged normal vectors computed at the finest leaf octants. If the leaf octant is empty we use a zero vector. _**If the octant is non empty, we sample the 3D shape surface embedded in the leaf octant with a set of points and average the normals of all sample points as the input vector.**_ The size of the vector is the number of the finest leaf octants in the octree.
     
     CNN features <br>
     for each 3D convolution kernel defined at the lth depth, we record the convolution results on all the octants at the lth depth in a feature map vector Tl.
@@ -71,7 +71,7 @@ classification is already performing well on resoltion 2^3 ..which means the net
     Note that if we have a batch of e.g. 4 3D objects to be used in a training step, these 4 objects will generate different octrees .. thus we need to do something for the efficient convolution of all at once. We merge these 4 octrees into one super-octree (concatenate vectors at each depth and do some re-calculations of keys etc)
     
 ##### CNN operations on the octree
- for convolution basically we have: our feature vector that can be of shape widthxheightxchannels and our kernel that has a size in width, height and channel and we can have N kernels ... 
+ for convolution basically we have: our feature vector that can be of shape width x height x channels and our kernel that has a size in width, height and channel and we can have N kernels ... 
  
  here, in OCNN, we have our octant feature (of n channels) and the convolution weights (filter) .. and we just do a matrix product 
 
