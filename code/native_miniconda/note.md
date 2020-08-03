@@ -38,3 +38,10 @@ and run it.
 
 
 -----------------
+
+
+put in bashrc:
+
+function _activate_conda {
+   export PATH=/home/christina/miniconda3/bin/:$PATH
+}
