@@ -58,11 +58,24 @@ Tensorflow
 
 #### Tensorflow definitions
 
-##### Tensor
+##### [Tensor](https://www.tensorflow.org/api_docs/python/tf/Tensor)
 Represents a rectangular array of data.
+
+A tensor has a signle data type and a shape.
+
+A tensor's shape may not always be fully known. (In tf.function definitions, the shape may only be partially known.)
+
+Examples of specialized tensors: ```tf.Variable, tf.constant, tf.placeholder, tf.sparse.SparseTensor, and tf.RaggedTensor```
+
+You can call ```.consumers()``` on a tensor to see a list of operations that consume this tensor and ```eval()``` to evaluate a tensor **in a session.**
 
 ##### Operation
 Represents a graph node that performs computation on tensors.
+
+##### [Variable](https://www.tensorflow.org/api_docs/python/tf/Variable)
+Variable is basically a wrapper on Tensor that maintains state across multiple calls to run, and I think makes some things easier with saving and restoring graphs. A Variable needs to be initialized before you can run it. You provide an initial value when you define the Variable, but you have to call its initializer function in order to actually assign this value in your session and then use the Variable.
+
+You can specify a Variable as trainable (the default, actually), meaning that your optimizer will adjust it in an effort to minimize your cost function; you can specify where the Variable resides on a distributed system; you can easily save and restore Variables and graphs.
 
 #### (Unit)Testing Tensorflow:
 

@@ -55,24 +55,6 @@ outperform models on ImageNet classification benchmark (and on Caltech101 and Ca
 
 6. by visualizing the layers' activations they found out that smaller conv filters are worse ..
 
-### From Video presentations
-
-![](../figures/deconv1.png)
-
-"To visualize, we select a single feature map to look at..and we take the strongest activation in that map and that input image.
- This is used as input to the Deconv Layer (which uses the same switches for pool/unpool and same filters for conv/deconv) to construct the output in the pixel space. In fact we want to take max activation over all input images. And in fact we want to visualize all feature maps in all layers. So we take max activation for each feature map over all images."
-
- ![](../figures/deconv2.png)
- 
- ![](../figures/deconv4.png)
-
- ![](../figures/deconv3.png)
-
-"from unpooling we implicitly get some local rotation invariance"
-
-"even though there is no class `text` the model learned to associate text with the car class"
-![](../figures/deconv5.png)
- 
 ### My Questions
 1. in fig2, they project the activations of one layer into pixel space using deconv approach.. do they mean that the deconv filters of size MxM into initial pixel size NxN or they show pixels fo layer size i.e. MxM ? if it's the first ... are all papers showing activations using deconv? (also in fig7 how is the projection done?!)
 
