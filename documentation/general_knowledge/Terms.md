@@ -101,3 +101,13 @@ if e.g. input shape is 10 x 10 and filters used in convolution layer are 4 filte
 _**Activation map**_ is each of the 8x8 results.
 
 (Feature Map = Activation Volume!!!)
+
+
+#### Skip Connections
+Connections from early layers to later layers through addition or straight up concatenation.
+
+A popular network using skip connections is the ResNet (Residual Network) ![](../figures/skipConnection.png) where skip connection is the yellow arrow which just adds the input x to the output of two resulting layers F(x), hence the overall output of the block is F(x)+x. (this type of skip connection is called residual connection)
+
+Intuition: uninterrupted gradient flow from first layer to last layer, to tackle the vanishing gradient problem of deep networks.
+
+Other networks use as skip connection a concatenation from first layer to the output of a later layer.
