@@ -61,3 +61,11 @@ Other Databases
 ---
 
 - [Trimple Warehouse](https://3dwarehouse.sketchup.com/)
+
+- COCO dataset: 
+    200000 images and 250000 person instances labeled with 17 key-points
+    can be used for object detection and instance segmentation
+    2D data
+
+
+(note: wordnet --> imagenet --> shapenet --> partnet)

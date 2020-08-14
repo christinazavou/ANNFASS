@@ -125,3 +125,12 @@ Types of Convolution:
     model.add(Conv3D(4, kernel_size=(3,3,3), input_shape = (128, 128, 128, 3)))
     # output shape is 126x126x126x4
     ```
+
+
+Popular network architectures:
+---
+for encoding (i.e. going from high resolution to low resolution):
+VGGNet, ResNet
+for decoding (i.e. going from low resolution to high resolution):
+SegNet, DeconvNet, U-Net
+
