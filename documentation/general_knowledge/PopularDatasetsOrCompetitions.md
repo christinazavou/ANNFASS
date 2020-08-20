@@ -21,7 +21,12 @@
   - ShapeNetCore55 (shapes of triangle meshes)
     - 51190 3D models with 55 categories and 204 subcategories-
     - consistent upright orientation
-
+  
+  - PartNet
+    - 24,506 3D shapes in 17 categories with fine-grained (i.e. , Level-3) labels.
+    - The part numbers in each shape category vary
+from 3 to 50. 
+    - Each shape contains 10,000 points and each point has a part ID label.
 
 
 Semantic segmentation:
