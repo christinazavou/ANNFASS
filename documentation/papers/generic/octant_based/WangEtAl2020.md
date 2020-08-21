@@ -121,14 +121,19 @@ Notes
 ---
 - "Our key observation is that a 3D shape is composed of its local parts and thus the feature for shape and points are coherent and should be encoded and trained jointly. So we adapt HRNet to octree-based net for extracting and fusing features from both points and shapes via parallel multiresolution subnetworks and connections across subnetworks."
 - for unsupervised pre-training a key idea is to design some pretext (surrogate) tasks that use supervision signals from the data itself. e.g. in NLP use ```mask context prediction``` or ```next sentence prediction```. In Computer Vision some pretext tasks are ```colorization```, ```context prediction```, ```motion segmentation```, ```image instance discrimination```, ```contrustive losses```.
+- "Our pre-trained MID-Net model is robust for 3D point clouds whose density is different to the pre-training data (e.g. point clouds in ShapeNet-Part segmentation test), and the ones that are out of shape collections used in pre-training (e.g. three categories in the PartNet segmentation test)."
+- "it is non-trivial for an unsupervised pre-trained model to achieve superior performance than supervised methods designed and optimized for specific downstream tasks due to the gap between the generic pretext task and the downstream tasks. For 3D shape analysis, our finding here is that as the amount of the labeled data in the downstream tasks decreases, a pre-trained model learned from large unlabeled shape collections via a well-designed pretext task could resolve this gap and outperform supervised approaches."
+- **PointNet++ has as well instance level and point level features thus it was easy to apply MID loss on that for comparisons!**
+- Ablation study of table 8 is useful.
 
 My questions
 ---
 1. ~~when we say in fig2 "to be discriminative and transformation-invariant under the supervision of the MID loss on both shape instance and point levels" what do we mean about point level ? that we want the color information to be correct? or if we have class per point to have correct class? what else can it be?~~ answered on [Method:MID loss](#Method:MID loss).
 2. fig4 right?
-3. what is "shape registration task"?
+3. ~~what is "shape registration task"?~~ The process of point cloud registration is to align a point cloud with its transformed version.
 4. how are the tasks specified in notes pretext ??
 5. ~~is called multi-resolution because of shape info and point info or also because we scale each shape in many other scaled examples?~~ because of HRNet
 6. in code how is the output for shape-instance and patch-instance ? is it a vector with probabilities of each shape and a matrix of 100 probabilities of each patch ?
 7. ~~what does it mean "different classifiers but same encoder"?~~ i guess if one shape has 10 patches and another shape has 20 patches then you need two different classifiers for the point classification of each shape!
 8. algorithm 1
+9. in table 8 it shows the training using fusion and MID loss (two loss function) vs no fusion (unet) and no MID (single loss function) ... in the code do we have that ?
