@@ -128,6 +128,6 @@ My questions
 5. ~~in fig 9 is it a preference selection of best patches by some users?~~ yes
 6. ~~PSLF~~
 7. how are the buildings in their data look like? is all color info removed? they say they learn what makes a bulding Gothic/Greek and where the style regions are!
-8. ~~how can i get feature lines from a 3D shape e.g. a .obj or .ply ?~~ explained in [Multi-view feature lines:](#multi-view-feature-lines:):
-9. ~~how is the backprojection done actually? is it just convolution and visualization of maximum activations?~~ it is just keeping locations of patches as explained in [Style patch extraction on shape surfaces:](#style-patch-extraction-on-shape-surfaces:)
+8. ~~how can i get feature lines from a 3D shape e.g. a .obj or .ply ?~~ explained in [Multi-view feature lines:](#multi-view-feature-lines):
+9. ~~how is the backprojection done actually? is it just convolution and visualization of maximum activations?~~ it is just keeping locations of patches as explained in [Style patch extraction on shape surfaces:](#style-patch-extraction-on-shape-surfaces)
 
