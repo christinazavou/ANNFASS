@@ -67,7 +67,7 @@ use of PSLF:
  
  => the final multi-view feature is compact and comprehensive, encoding both shared and distinct information in different views
  
-#### <a href="#StyleAnalysis">Unsupervised and semi-supervised style analysis:</a>
+#### Unsupervised and semi-supervised style analysis:
 **Based on the clustering result, we re-select the representative mid-level patches to learn more and more discriminative ones with respect to the evolving style clusters.** This will in turn update the feature encoding in the next iteration. Such cluster-and-select process iterates until the clusters and patches become stable.
 
 if we want to use semi-supervised process:
@@ -121,7 +121,7 @@ Notes
 
 My questions
 ---
-1. ~~how is the style clustering performed and used? it says that it uses info from style triplets..but clustering is generally unsupervised..so i guess the things connected to the clustering (i.e. encoding with convolution) is the one utilizing optimization(learning) from the triplets?~~ ~~from fi10-13 i think this can be unswered by understanding PSLF~~ indeed, PSFL selects the most distinctive mid-level patches which make the best clustering (look at [supervised and semi-supervised style analysis:](#StyleAnalysis)). In fact in unsupervised we iterate using metrics that specify how good the cluster is .. in semi-supervised we use additionally human labels ..
+1. ~~how is the style clustering performed and used? it says that it uses info from style triplets..but clustering is generally unsupervised..so i guess the things connected to the clustering (i.e. encoding with convolution) is the one utilizing optimization(learning) from the triplets?~~ ~~from fi10-13 i think this can be unswered by understanding PSLF~~ indeed, PSFL selects the most distinctive mid-level patches which make the best clustering (look at [supervised and semi-supervised style analysis:](#unsupervised-and-semi-supervised-style-analysis)). In fact in unsupervised we iterate using metrics that specify how good the cluster is .. in semi-supervised we use additionally human labels ..
 2. as i understand from fig4 we sample some patches from each view in each shape (object) .. and then we cluster all of those together into K clusters where any sampled patch can belong (be close to) one of those clusters .. so you can see different shapes of similar styles (related patches) being close together !? ...so... where is the supervision applied !? in fig5 does he mean that after the clusters we do convolution of all clusters with the image and then max pooling and now we have the encoded representation of our object?!
 3. ~~in randomly selected patches (fig 8b) do we have some constant patch size that we select?~~ For a 200×200 image, we extract about 30 patches, where the patch size is chosen experimentally
 4. ~~from fig8 .. do we use the annotated patches as predefined kmeans or we use them differently?~~ we use them differently. Actually these annotations are just for evaluation, and other labels we have are used during the semi-supervised clustering.
