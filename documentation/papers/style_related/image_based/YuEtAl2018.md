@@ -33,7 +33,7 @@ We use the discriminatively detected mid-level patches as filters to perform fea
 - they focus on style-driven shape retrieval, trying to learn a specialized shape similarity ... we face style classification/clustering and style patch extraction
 - they adapt metric learning to learn a global style metric...we adapt PSLF clustering to help us select and locate style feature patches
 
-#### <a href="#MVFlines">Multi-view feature lines:</a>
+#### Multi-view feature lines:
 - render the object from 12 virtual cameras (with 30 degrees rotation each and elevation of 30 degrees from the ground pointing towards the center of the shape)
 - extract 
     - suggestive contours and
@@ -89,7 +89,7 @@ Directly clustering the fused features may not generate the optimal results sinc
 #### Cluster-guided style patch selecting:
 Based on the PSLF clustering results, we re-select discriminant mid-level patches for each view, to be those which are frequent only within one cluster.
 
-#### <a href="PatchExtract"> Style patch extraction on shape surfaces: </a>
+#### Style patch extraction on shape surfaces:
 We can backproject the **final selected 2D patches** onto the initial 3D surfaces, by keeping the location information when we go from 3D to 2D. The issue here is that the final style patches are selected from only a few 3D shapes .. thus to locate the style patches on other shapes we need to compare them against all patches sampled in those shapes and take the most similar based on the HOG features (i.e. the representation)
 
 #### Style analysis results and evaluation:
@@ -128,6 +128,6 @@ My questions
 5. ~~in fig 9 is it a preference selection of best patches by some users?~~ yes
 6. ~~PSLF~~
 7. how are the buildings in their data look like? is all color info removed? they say they learn what makes a bulding Gothic/Greek and where the style regions are!
-8. ~~how can i get feature lines from a 3D shape e.g. a .obj or .ply ?~~ explained in [Multi-view feature lines:](#MVFlines):
-9. ~~how is the backprojection done actually? is it just convolution and visualization of maximum activations?~~ it is just keeping locations of patches as explained in [Style patch extraction on shape surfaces:](#PatchExtract)
+8. ~~how can i get feature lines from a 3D shape e.g. a .obj or .ply ?~~ explained in [Multi-view feature lines:](#multi-view-feature-lines:):
+9. ~~how is the backprojection done actually? is it just convolution and visualization of maximum activations?~~ it is just keeping locations of patches as explained in [Style patch extraction on shape surfaces:](#style-patch-extraction-on-shape-surfaces:)
 
