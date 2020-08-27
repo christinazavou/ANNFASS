@@ -70,4 +70,4 @@ Notes
     
 My Questions
 ---
-1. what is our (in OCNN segmentation) algorithm ? is fine-grained semantic segmentation ?
+1. ~~what is our (in OCNN segmentation) algorithm ? is fine-grained semantic segmentation ?~~ yes
