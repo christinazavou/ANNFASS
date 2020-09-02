@@ -56,6 +56,34 @@ Saliency can be seen as a segmentation problem...i.e. categorizing pixels...
 #### LiDAR
 LiDAR sensor uses pulses of light to mesure the distance of all points to our object of interest
 
+Common Terms in Deep Learning
+---
+
+#### Feature Map (in Convolutional Neural Networks)
+it is the output of an input convolved with a filter 
+e.g. input shape 100x100x3 and 20 filters of 3x3 and stride 1 gives output 98x98x20 which is the feature map
+
+#### Activation Volume (in Convolutional Neural Networks)
+if e.g. input shape is 10 x 10 and filters used in convolution layer are 4 filters of 3x3 then activation volume is the resulting 8x8x4
+
+_**Activation map**_ is each of the 8x8 results.
+
+(Feature Map = Activation Volume!!!)
+
+
+#### Skip Connections
+Connections from early layers to later layers through addition or straight up concatenation.
+
+A popular network using skip connections is the ResNet (Residual Network) ![](../figures/skipConnection.png) where skip connection is the yellow arrow which just adds the input x to the output of two resulting layers F(x), hence the overall output of the block is F(x)+x. (this type of skip connection is called residual connection)
+
+Intuition: uninterrupted gradient flow from first layer to last layer, to tackle the vanishing gradient problem of deep networks.
+
+Other networks use as skip connection a concatenation from first layer to the output of a later layer.
+
+
+Common Terms in Machine Learning:
+---
+
 #### Odds
 ```
 "the odds in favor of my team winning the game are 5 to 3"
@@ -91,23 +119,14 @@ log(odds) = log (5/3) or log (5/8 / 5/3)
 i.e. log(p/1-p) which is called **_"logit function"**_ (and is the basis of logistic regression!!)
 
 
-#### Feature Map (in Convolutional Neural Networks)
-it is the output of an input convolved with a filter 
-e.g. input shape 100x100x3 and 20 filters of 3x3 and stride 1 gives output 98x98x20 which is the feature map
+#### Cosine similarity
+In a large dimensional space, all points tend to be far apart by the euclidian measure, thus the angle between vectors is a more effective measure. The cosine distance measures the cosine of the angle between the vectors. 
 
-#### Activation Volume (in Convolutional Neural Networks)
-if e.g. input shape is 10 x 10 and filters used in convolution layer are 4 filters of 3x3 then activation volume is the resulting 8x8x4
+The cosine of identical vectors is 1 while orthogonal and opposite vectors are 0 and -1 respectively.
+ 
+More similar vectors will result in a larger number. Calculating the cosine distance is done by taking the dot product of the vectors.
 
-_**Activation map**_ is each of the 8x8 results.
+#### Softmax function
 
-(Feature Map = Activation Volume!!!)
+The softmax function takes a vector of real numbers and forces them into a range of 0 to 1 with the sum of all the numbers equaling 1. One other nice property of softmax is that one of the values is usually much bigger than the others.
 
-
-#### Skip Connections
-Connections from early layers to later layers through addition or straight up concatenation.
-
-A popular network using skip connections is the ResNet (Residual Network) ![](../figures/skipConnection.png) where skip connection is the yellow arrow which just adds the input x to the output of two resulting layers F(x), hence the overall output of the block is F(x)+x. (this type of skip connection is called residual connection)
-
-Intuition: uninterrupted gradient flow from first layer to last layer, to tackle the vanishing gradient problem of deep networks.
-
-Other networks use as skip connection a concatenation from first layer to the output of a later layer.
