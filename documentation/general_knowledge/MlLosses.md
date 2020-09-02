@@ -4,6 +4,9 @@
 
 2. Contrastive Loss
 ---
+
+- [blog post 1](https://towardsdatascience.com/contrastive-loss-explaned-159f2d4a87ec)
+
 Used in siamese networks, when instead of having class labels and using categorical cross entropy, we dont have labels, so we can use contrastive loss.
 
 Contrastive loss takes the output of the network for a positive example and calculates its distance to an example of the same class and contrasts that with the distance to negative examples. 
@@ -15,8 +18,6 @@ This is accomplished by taking the cosine distances of the vectors and treating 
 Contrastive loss looks suspiciously like the softmax function. That’s because it is, with the addition of the vector similarity and a temperature normalization factor.
 
 ![expfun note](../figures/exp_func.png)
-
-- [blog post](https://towardsdatascience.com/contrastive-loss-explaned-159f2d4a87ec)
 
 ```python
 import numpy as np
@@ -71,3 +72,12 @@ np.array([
 )
 # gives 1.0986122899985278
 ```
+
+- [blog post 2](https://towardsdatascience.com/how-to-choose-your-loss-when-designing-a-siamese-neural-net-contrastive-triplet-or-quadruplet-ecba11944ec)
+
+![](../figures/contrastiveloss1.png)
+![](../figures/tripletloss.png)
+
+Contrastive loss takes as input your current sample and another sample (which is labeled either as similar or dissimilar) while Triple loss takes as input your current sample, one similar sample and one dissimilar sample.
+
+- [Tensorflow implementation](https://stackoverflow.com/questions/38260113/implementing-contrastive-loss-and-triplet-loss-in-tensorflow)
