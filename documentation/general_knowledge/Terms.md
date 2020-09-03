@@ -49,6 +49,9 @@ In solid geometry i.e. in geometry of 3-d euclidean space, it is similar to quad
 #### Affine transformation
 A geometric transformation that preserves lines and parallelism (but not necessarily distances and angles).
 
+An affine transformation is any transformation that combines linear transformations and translations. The origin does not always have to map the origin. [link](https://maelfabien.github.io/computervision/cv_5/#2-affine-transformation)
+
+
 #### Saliency map
 An image that shows each pixel's unique quality
 Saliency can be seen as a segmentation problem...i.e. categorizing pixels...

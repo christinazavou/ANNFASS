@@ -19,18 +19,18 @@ pipeline (fig.2):
 as you see in fig1 given a collection of many objects the method can cluster them into similar style objects and highlight their stylistic patches
 
 #### PSLF:
-PSLF is essentially a dimensionality reduction technique that is realized through a non-negative matrix factorization (NMF).
+**PSLF is essentially a dimensionality reduction technique** that is realized through a non-negative matrix factorization (NMF).
 
 #### Mid-level patches:
 - neither too local nor too global
 - While unsupervised approaches typically perform the analysis purely at the patch level, weakly supervised approaches typically detect mid-level patches or compute patch clusterings to attain maximal adherence to the image or object labels
 
 #### Convolutional activational features:
-We use the discriminatively detected mid-level patches as filters to perform feature encoding based on a sliding-window convolutional operation. We use these features as per-view initial features and conduct multi-view feature fusion and selection via PSLF.
+We use the discriminatively detected mid-level patches as filters to perform feature encoding based on a sliding-window convolutional operation. We use these features as per-view initial features and **conduct multi-view feature fusion and selection via PSLF**.
 
 #### The difference with the other deep-learning approaches:
-- they have labels of similarity and they just learn an encoding and the similarity metric .. we learn to spatially locate style patches.
-- they focus on style-driven shape retrieval, trying to learn a specialized shape similarity ... we face style classification/clustering and style patch extraction
+- they have labels of similarity and they just learn an encoding and the similarity metric .. we learn to spatially locate style patches.s
+- they focus on style-driven shape retrieval, trying to learn a specialized shape similarity ... we face **style classification/clustering** and **style patch extraction**
 - they adapt metric learning to learn a global style metric...we adapt PSLF clustering to help us select and locate style feature patches
 
 #### Multi-view feature lines:
@@ -42,8 +42,7 @@ We use the discriminatively detected mid-level patches as filters to perform fea
 
 #### Patch sampling and pre-selection:
 1. we first randomly sample a set of points on each shape (For a 200×200 image, we extract about 30 patches, where the patch size is chosen experimentally)
-2. for each sample point and each view in which this
-point is visible, a patch is generated as the window centered at the projection of the point. 
+2. for each sample point and each view in which this point is visible, a patch is generated as the window centered at the projection of the point. 
 3. We then perform k-means clustering to extract a set of representatives as the cluster center (In practice, we extract 50 representative patches for each view)
 
 #### Per view feature encoding:
@@ -56,9 +55,9 @@ point is visible, a patch is generated as the window centered at the projection 
         therefore we have multi-scale features (by concatenating the feature vectors of all convolution filters, we have a 5K-dimensional feature vector for K mid-level patches)
 
 #### Multi-view feature integration (fusion):
-We have a feature vector for each view of a given shape. We perform multi-view feature fusion to extract a new feature for the shape. This feature uses information from jointly analyzing a set of shapes. To do this we use PSLF, which is a clustering method coupled with multi-view feature integration.
+We have a feature vector for each view of a given shape. We perform multi-view feature fusion to extract a **new feature for the shape**. This feature **uses information from jointly analyzing a set of shapes**. To do this we use PSLF, which is a clustering method coupled with multi-view feature integration.
 
-PSLF employs non-negative matrix factorization (NMF) to learn a compact yet comprehensive partially shared latent representation.... Essentially, PSLF learns the fused feature matrix V and the basis matrix U, while tuning the weights of different views, all in an unsupervised manner, by minimizing the reconstruction error with respect to the input features...The projection of the fused features over the basis leads to a clustering of input features. 
+**PSLF** employs **non-negative matrix factorization (NMF)** to learn a compact yet comprehensive partially shared latent representation.... Essentially, PSLF learns the fused feature matrix V and the basis matrix U, while tuning the weights of different views, all in **an unsupervised manner, by minimizing the reconstruction error** with respect to the input features...The projection of the fused features over the basis leads to a clustering of input features. 
 
 use of PSLF:
  - separates input multi-view features into 
@@ -130,4 +129,10 @@ My questions
 7. how are the buildings in their data look like? is all color info removed? they say they learn what makes a bulding Gothic/Greek and where the style regions are!
 8. ~~how can i get feature lines from a 3D shape e.g. a .obj or .ply ?~~ explained in [Multi-view feature lines:](#multi-view-feature-lines):
 9. ~~how is the backprojection done actually? is it just convolution and visualization of maximum activations?~~ it is just keeping locations of patches as explained in [Style patch extraction on shape surfaces:](#style-patch-extraction-on-shape-surfaces)
-
+10. ~~the "back-projected features" is just to show where we detect similar style patches, right?~~ yes
+11. in fig2c, the supervision box is showing a triplet i.e. triplet loss ??
+12. ~~how are the mid-level-patches-that-should-show-some-style detected?~~ look at [Patch sampling and pre-selection](#patch-sampling-and-pre-selection) Ok. but how do i know these patches preserve style?
+13. ~~what does the convolution of a patch with a feature line (contour image) show me? does it show high activation values in case the patch and the contour image match , so by using many images and many patches i give more importance to the ones that appear a lot and are discriminative and using feature-selection-over-many-shapes(PSLF) the important patches can be selected !?~~ **looks like yes .. and because of the iteration and evaluation of the clusters we can select more meaningful patches (while at the beginning they are random) .. however, how do i know in the case of unsupervised clustering that the patches i select are not patches showing structure? i.e. how are my cluster metrics incorporate style evaluation to ensure style patches are picked?**
+14. the separation of common and special features from PSLF (fig2c) is something that comes with PSLF method or a functionality they specifically added in a way?
+15. ~~in the iteration process how do we define that the clusters became stable?~~ i think by convergence of the cluster metrics 
+16. is PSLF doing feature selection or does it create latent features? can i see selected stylistic patches in either way because we just pick all patches selected in the last iteration (best trained checkpoint) ?
