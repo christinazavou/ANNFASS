@@ -73,7 +73,54 @@ sudo snap install pycharm-community --classic
 
 11. sudo snap install cmake --classi
 
-notes while trying out staff:
+12. wget https://downloads.slack-edge.com/linux_releases/slack-desktop-4.0.2-amd64.deb
+	sudo apt install ./slack-desktop-*.deb
+
+13. download teamviewer debian file
+	double click it to install or run sudo apt install ./team...deb
+
+14.	sudo apt update
+	sudo apt install apt-transport-https ca-certificates curl software-properties-common
+	curl -fsSL https://download.docker.com/linux/ubuntu/gpg | sudo apt-key add -
+	sudo add-apt-repository "deb [arch=amd64] https://download.docker.com/linux/ubuntu bionic stable"
+	sudo apt update
+	apt-cache policy docker-ce
+	sudo apt install docker-ce
+
+	(now because i was seeing warnings about symlink cuda i removed /usr/local/cuda)
+
+	sudo systemctl status docker (this starts docker)
+
+	now to avoid typing sudo whenever we run the docker command i run:
+	sudo usermod -aG docker ${USER}
+	su - ${USER}
+
+	now to confirm your user is added to docker group run:
+	id -nG
+
+	now to check if you can access and download images from Docker Hub run:
+	docker run hello-world
+
+	you can search for images in the hub with e.g. "docker search ubuntu"
+
+	you can run interactively with e.g. "docker run -it ubuntu" and "exit" to exit
+	to view all containers: "docker ps -a"
+	to view last created container: "docker ps -l"
+	to start a stopped container: "docker start <containerid>"
+	to stop it "docker stop <containerid>"
+	to remove it "docker rm <containerid>"
+
+	when you start and stop a container ... the changes you make to it remain ... but once you remove the container you lose everything ... you can however save the state of a container as a new Docker image. use:
+	"docker commit -m 'my change in ..' -a 'dezavou' <containerid> <repository>/<newimagename>"
+	you can use for the repository your username. then with docker image ls you will see this new image. there is a way to push this in Docker Hub. You can also build images from Dockerfiles.
+
+	start docker server with "systemctl start docker" or "sudo dockerd"
+
+15.	sudo snap install pycharm-professional --classic
+
+16.	sudo pycharm-professional (it needs sudo to look at docker daemon socket) (to get pycharm licence....use emailname@ucy.ac.cy email...)
+
+notes while trying to compile OCNN:
 	export PATH=/home/graphicslab/anaconda3/bin:$PATH
 	conda --version
 
@@ -86,3 +133,13 @@ notes while trying out staff:
 	python3 --version
 
 	echo $PATH | sed "s|/home/graphicslab/anaconda3/envs/OCNN2/bin:|/home/graphicslab/anaconda3/bin:|g"
+
+notes while installing docker:
+	i have an incorrect symbolic link with cuda10.2
+	typing ls -la /usr/local shows the symbolic link: cuda -> /usr/local/cuda-10.2/
+	i can create a symbolic link with:
+	sudo ln -s /home/christina/Downloads /Downloads
+	or 
+	sudo ln -s /home/christina/Documents/Pictures ZavouPic and then cd ZavouPic and with pwd i will see /home/christina/ZavouPic
+	or if you want the link to be permanent: remove flag -s
+	to remove a symlink: just use "rm ZavouPic"
