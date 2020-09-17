@@ -1,0 +1,97 @@
+==============================================================================================
+==============================================================================================
+Windows machines generally have two BIOS types: Legacy or UEFI
+
+Create a Windows 10 UEFI boot USB:
+	GPT partition scheme for UEFI
+	FAT32 scheme
+Create a Windows 10 Legacy Boot USB:
+	MBR parition scheme for BIOS
+	NTFS
+
+Bootloader = a piece of code that runs before any OS is running. A bootloader is used to boot other OSs. Each OS usually has its own bootloader.
+
+GRUB = Grand Unified Bootloader = a bootloader package developed to support multiple OSs and allow the user to select among them during boot-up. It is Ubuntu's default bootloader.
+
+BIOS = Basic Input Output System = It instructs the computer on how to perform basic functions such as booting and keyboard control. It is also used to identify and configure the hardware in a computer such as hard drive, floppy drive, CPUm memory... 
+BIOS comes installed from the moment the machine is manufactured.
+BIOS is independed of any OS, it is part of the motherboard hardware.
+
+How Dual-Booting Works:
+	OS is installed on hard drive. When you boot PC, BIOS loads the boot loader from the hard drive and bootloader boots the installed OS.
+
+	You can put many OS in one drive (by partitioning the hard drive). You can also put more hard drives and put one OS on each. (If each operating system is installed to a separate drive, you could actually switch between both by selecting a different drive as your boot device every time you boot. This is inconvenient and you’ll probably have two operating systems installed on the same drive, so that’s where a boot manager comes in.) 
+
+	You can choose which hard drive to boot in your BIOS or boot menu. (like when we boot from flask usb). You can also boot an OS (like a live Ubuntu system) from external storage media.
+
+	When you install a Linux distribution, it typically installs the Grub boot loader. Grub loads instead of the Windows boot loader at boot time if Windows was already installed, allowing you to choose the OS you want to boot. Windows also has its own boot loader, which can be used to select between different versions of Windows if you have many installed.
+
+	(You could use virtual machine software instead of setting up a dual-boot system, but a dual-boot system lets you actually use both operating systems on your hardware at full, native speed. You don’t have to deal with the overhead of a virtual machine, which is especially bad when it comes to 3D graphics. The downside is you can only use one of your installed operating systems at a time.)
+
+	The Windows boot loader recognizes most Linux distros, and the Linux boot loader usually recognizes Windows without problems. The difference is that Windows, with updates to the operating system, tends to fail. For this reason, if you will put Windows and Ubuntu on the same hard drive we recommend that you use linux bootloader (GRUB). And for this, it is best to install first Windows and then Ubuntu.
+
+Fresh Installation of Ubuntu 18 and Windows 10 on one hard disk:
+	
+	In this https://www.youtube.com/watch?v=u5QyjHIYwTQ&ab_channel=It%27sFOSS-LinuxBlog
+	he has a disk with 238 GB...he is using 223GB for Windows... He is shrinking this (from Windows Disk Management) to create some free space to install ubuntu there...so he has created 98GB of unallocated space. He is creating a live USB (using Etcher). He reboots PC, and at boot screen press F10 or F12 and boot from usb. Then choose install Ubuntu.
+	He can use install Ubuntu alongside Windows Boot Manager or Something else. He chooses something else
+
+
+	I have 500GB disk... so I can use 200GB for Windows and 275GB for Ubuntu
+	
+
+
+==============================================================================================
+==============================================================================================
+
+df /
+	shows where is the volume that / is mounted from 
+
+==============================================================================================
+==============================================================================================
+
+note: disable windows fast startup option .. because this enables windows to hibernate .. which causes issues with mounting window partition with full read and write permissions on linux...
+
+NTFS = New Technology File System = first introduced by Microsoft. It is used by Windows. It is supported also in other OS's.
+
+FAT file system = the primary file system in Microsoft's older OS. All Windows still support FAT.
+
+exFAT file system = a newer file system, designed to be used where NTFS doesnt work well, like on flash drives.
+
+
+==============================================================================================
+==============================================================================================
+nomizo ta windows exoun to boot tous sto dev/sda1 kai ta ubuntu exoun to boot tous sto dev/sda5!?
+
+i to GRUB einai sto /dev/sda7 pou einai kai to ubuntu .. kai mporei na kanei boot eite windows eite ubuntu ? ara giati de vlepei ta windows?
+
+ta windows einai sto dev/sda2 alla to grub nomizei oti einai sto dev/sda1 kai den ta vriskei..
+
+to dev/sda5 einai to partition me to EFI ara isos prepei auto na xrisimopoiithei ..
+
+ways to restore windows booting:
+	1. windows tool: https://www.thewindowsclub.com/repair-master-boot-record-mbr-windows
+	2. windows tool: https://neosmart.net/EasyBCD/
+	   				 https://askubuntu.com/questions/62440/is-it-possible-to-boot-ubuntu-using-the-windows-bootloader
+	3. grub customizer on ubuntu: https://techwiser.com/fix-windows-10-not-booting-up-on-linux/ 
+
+note: afotou prosthesa to MyWindows10 sto grub customizer, otan kano boot mpainei kateutheian sta ubuntu xoris na me rotisei. kai tora pou to evgala to MyWindows10 pali mpainei kateutheian ubuntu ... 
+
+
+currently:
+	/dev/sda1
+		524MB, NTFS/exFAT/HPFS, NotMounted, 1EC... (Microsoft basic data)
+	/dev/sda2
+		264GB, NTFS/exFAT/HPFS, NotMounted, 0AC...  (Microsoft basic data)
+	/dev/sda3
+		489MB, 0x27, NotMounted, 1CCA... (Windows RE)
+	/dev/sda4
+		235GB, Extended
+		/dev/sda5
+			199MB, EFI(FAT12/16/32) (Bootable), NotMounted, 
+		/dev/sda6
+			8.2GB, Linux swap, , 32db...
+		/dev/sda7
+			227GB, Linux, Ext4, Mounted at FilesystemRoot, 3f56...
+
+sudo gdisk -l /dev/sda
