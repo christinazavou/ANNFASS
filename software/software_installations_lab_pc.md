@@ -1,31 +1,28 @@
 ﻿Fresh Ubuntu on PC ‘graphics_lab’
 
-1. 	install google chrome
-2. 	sudo apt install git
-	git config --global user.name "christinazavou"
-	git config --global user.email "czavou01@gmail.com"
-	(you can check nano ~/.gitconfig)
+1. ```sudo apt install snapd```
 
-3. sudo apt install snapd
+    Snaps are basically an application compiled together with its dependencies and libraries – providing a sandboxed environment for the application to run. These are easier and faster to install, can receive latest updates and is confined from the OS and other apps. In other words, instead of worrying about DEB packages for Debian/Ubuntu, RPM packages for Fedora etc, you can use Snap package that would work on all Linux distributions with Snap support.
+    
+    Anyone can publish a snap in the store, however, you only see the snaps that are published to the stable release and has been reviewed. Use the below command to search for a snap:
 
-Snaps are basically an application compiled together with its dependencies and libraries – providing a sandboxed environment for the application to run. These are easier and faster to install, can receive latest updates and is confined from the OS and other apps. In other words, instead of worrying about DEB packages for Debian/Ubuntu, RPM packages for Fedora etc, you can use Snap package that would work on all Linux distributions with Snap support.
+    - search for snaps using ```sudo snap find libreoffice```
+    - install a snap using ```sudo snap install <snap_name>```
+    - update a snap using ```sudo snap refresh <snap_name>```
+    - uninstall a snap using ```sudo snap remove <snap_name>```
+    - list installed snaps using ```snap list```
 
-Anyone can publish a snap in the store, however, you only see the snaps that are published to the stable release and has been reviewed. Use the below command to search for a snap:
+2. 	```sudo snap install chromium```
 
-sudo snap find libreoffice
+3. 	```
+    sudo apt install git
+    git config --global user.name "christinazavou"
+    git config --global user.email "czavou01@gmail.com"
+    ``` 
+    (you can check nano ~/.gitconfig)
 
-install a snap using:
-sudo snap install <snap_name>
-update a snap using:
-sudo snap refresh <snap_name>
-
-uninstall a snap using:
-sudo snap remove <snap_name>
-
-list installed snaps using:
-snap list
-4. install pycharm-community using:
-sudo snap install pycharm-community --classic
+4.	```sudo snap install pycharm-professional --classic```
+    (use jetbrains login...where you can sign up with university email to get the license for free)
 
 5. 	download cuda runfile and install it in specific location
 	sudo sh cuda_10.1.105_418.39_linux.run --silent --toolkit --toolkitpath=/usr/local/cuda-10.1
@@ -116,7 +113,6 @@ sudo snap install pycharm-community --classic
 
 	start docker server with "systemctl start docker" or "sudo dockerd"
 
-15.	sudo snap install pycharm-professional --classic
 
 16.	sudo pycharm-professional (it needs sudo to look at docker daemon socket) (to get pycharm licence....use emailname@ucy.ac.cy email...)
 
