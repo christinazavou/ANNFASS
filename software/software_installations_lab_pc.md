@@ -14,7 +14,8 @@
 
 2. 	```sudo snap install chromium```
 
-3. 	```
+3. 	install and configure git
+    ```
     sudo apt install git
     git config --global user.name "christinazavou"
     git config --global user.email "czavou01@gmail.com"
@@ -22,59 +23,107 @@
     (you can check nano ~/.gitconfig)
 
 4.	```sudo snap install pycharm-professional --classic```
-    (use jetbrains login...where you can sign up with university email to get the license for free)
+    (use jetbrains login...where you can sign up with university email-@ucy.ac.cy- to get the license for free)
+    
+5. ```sudo snap install sublime-text --classic```
 
-5. 	download cuda runfile and install it in specific location
-	sudo sh cuda_10.1.105_418.39_linux.run --silent --toolkit --toolkitpath=/usr/local/cuda-10.1
+6. ```sudo snap install cmake --classic```
 
-	note: with nvidia-smi you don't see the CUDA version installed, but the maximum CUDA version that your driver supports.
+7. ```sudo snap install slack --classic```
+    (log in to channels: visualcomputi-k1f2355.slack.com, annfass.slack.com)
 
-6. 	download and install anaconda from 	https://www.anaconda.com/distribution/ and run 
-	bash anaconda….sh
- 	run source ~/.bashrc
- 	check with conda –version
-
-7. install sublime with snap
-
-8. add in ~/.bashrc the option to switch cuda:
-	function _switch_cuda {
-	   v=$1
-	   export PATH=$PATH:/usr/local/cuda-$v/bin
-	   export CUDADIR=/usr/local/cuda-$v
-	   export LD_LIBRARY_PATH=$LD_LIBRARY_PATH:/usr/local/cuda-$v/lib64
-	   nvcc --version
-	}
-
-9. download cudnn
-	make file cudnn_install.sh with:
-
-	read -p "CUDA-version: " ver
-	cp cuda/include/cudnn.h /usr/local/cuda-"${ver}"/include
-	cp cuda/lib64/libcudnn* /usr/local/cuda-"${ver}"/lib64
-	chmod a+r /usr/local/cuda*/include/cudnn.h /usr/local/cuda*/lib64/libcudnn*
-
-	download linux cudnn .tgz file and extract with
-	tar -zxvf cudnn-10.1-linux-x64-v7.6.5.32.tgz
-
-	then run sudo sh cudnn_install.sh and give it version 10.1
-	then delete cuda folder
-
-
-10. create conda environment with cuda using: https://github.com/christinazavou/ANNFASS/tree/master/software and running:
-	make init-OCNN
-
-	then check if ok with 
-	from tensorflow.python.client import device_lib
-    local_device_protos = device_lib.list_local_devices()
-    local_device_protos
-
-11. sudo snap install cmake --classi
-
-12. wget https://downloads.slack-edge.com/linux_releases/slack-desktop-4.0.2-amd64.deb
-	sudo apt install ./slack-desktop-*.deb
-
-13. download teamviewer debian file
+8. download teamviewer debian file
 	double click it to install or run sudo apt install ./team...deb
+
+9. download and install miniconda:
+
+    Miniconda is a minimal free Conda installer. It’s a thin, bootstrap version that contains just conda, Python, the packages they depend on, and a limited range of other helpful modules like pip, zlib, and a few others.
+    
+    Install Anaconda as a non-root user, so that you dont need permissions from the administrator and is the most stable form of installation.
+    
+    By default conda init will add to your .bashrc file for the base environment, which will slow down your terminal. You can remove them in your .bashrc file or answer no to that question in the last step of your miniconda installation.
+    
+    And then add the following to your .bashrc file. 
+    ```
+   source ~/miniconda3/etc/profile.d/conda.sh
+    if [[ -z ${CONDA_PREFIX+x} ]]; then
+        export PATH="~/conda/bin:$PATH"
+    fi
+   ```
+   To test it, open a new terminal tab or run ```source .bashrc```. Run ```conda activate base```, then you should see (base) in front of your Bash prompt. Now you can create another environment and activate it using Miniconda. If you frequently use one environment, you can also add conda activate [env] to your .bashrc file.
+       
+    **So to get miniconda**:
+    ```
+   wget https://repo.anaconda.com/miniconda/Miniconda3-latest-Linux-x86_64.sh
+   chmod +x Miniconda3-latest-Linux-x86_64.sh
+   ./Miniconda3-latest-Linux-x86_64.sh
+   conda create -n newenv
+    ```
+
+10. setup cuda (so that we can run ML libraries like Tensorflow on the GPU)
+
+    The CUDA Toolkit includes libraries, debugging and optimization tools, a compiler, documentation, and a runtime library to deploy your applications. It has components that support deep learning, linear algebra, signal processing, and parallel algorithms.
+    
+    Before you can install and run TensorFlow, you’ll need to install the CUDA drivers for your machine and the cuDNN updates for it.
+    
+    note: do the [preinstallation actions](https://docs.nvidia.com/cuda/cuda-installation-guide-linux/index.html)
+   	note: with nvidia-smi you don't see the CUDA version installed, but the maximum CUDA version that your driver supports.
+
+    IN UBUNTU 20.04LTS:
+    follow [this](https://towardsdatascience.com/installing-tensorflow-gpu-in-ubuntu-20-04-4ee3ca4cb75d)
+        
+        sudo apt install nvidia-cuda-toolkit
+        nvcc -V
+        whereis cuda
+        tar -xvzf cudnn-10.1-linux-x64-v7.6.5.32.tgz
+        sudo cp cuda/include/cudnn.h /usr/lib/cuda/include/
+        sudo cp cuda/lib64/libcudnn* /usr/lib/cuda/lib64/ 
+        sudo chmod a+r /usr/lib/cuda/include/cudnn.h 
+        echo 'export LD_LIBRARY_PATH=/usr/lib/cuda/lib64:$LD_LIBRARY_PATH' >> ~/.bashrc
+        echo 'export LD_LIBRARY_PATH=/usr/lib/cuda/include:$LD_LIBRARY_PATH' >> ~/.bashrc
+        source ~/.bashrc
+        
+        create conda environment with tensorflow that supports gpu with:
+        conda create --name OCNN python=3.7
+        conda install -c conda-forge yacs tqdm
+        conda install -c anaconda tensorflow-gpu==1.14.0
+		conda install gast==0.2.2 numpy==1.16.4
+		
+    IN UBUNTU 18.04LTS:
+
+        download cuda runfile and install it in specific location
+	    sudo sh cuda_10.1.105_418.39_linux.run --silent --toolkit --toolkitpath=/usr/local/cuda-10.1
+
+        add in ~/.bashrc the option to switch cuda:
+        function _switch_cuda {
+           v=$1
+           export PATH=$PATH:/usr/local/cuda-$v/bin
+           export CUDADIR=/usr/local/cuda-$v
+           export LD_LIBRARY_PATH=$LD_LIBRARY_PATH:/usr/local/cuda-$v/lib64
+           nvcc --version
+        }
+
+        download cudnn
+	    make file cudnn_install.sh with:
+        read -p "CUDA-version: " ver
+        cp cuda/include/cudnn.h /usr/local/cuda-"${ver}"/include
+        cp cuda/lib64/libcudnn* /usr/local/cuda-"${ver}"/lib64
+        chmod a+r /usr/local/cuda*/include/cudnn.h /usr/local/cuda*/lib64/libcudnn*
+
+        download linux cudnn .tgz file and extract with
+        tar -zxvf cudnn-10.1-linux-x64-v7.6.5.32.tgz
+
+        then run sudo sh cudnn_install.sh and give it version 10.1
+        then delete cuda folder
+
+        create conda environment with tensorflow supporting gpu using: https://github.com/christinazavou/ANNFASS/tree/master/software and running:
+    	make init-OCNN
+
+    check if your python environment that contains tensorflow is able to use your GPU:
+    
+        from tensorflow.python.client import device_lib
+        local_device_protos = device_lib.list_local_devices()
+        local_device_protos
 
 14.	sudo apt update
 	sudo apt install apt-transport-https ca-certificates curl software-properties-common
@@ -113,8 +162,7 @@
 
 	start docker server with "systemctl start docker" or "sudo dockerd"
 
-
-16.	sudo pycharm-professional (it needs sudo to look at docker daemon socket) (to get pycharm licence....use emailname@ucy.ac.cy email...)
+16.	sudo pycharm-professional (it needs sudo to look at docker daemon socket) 
 
 notes while trying to compile OCNN:
 	export PATH=/home/graphicslab/anaconda3/bin:$PATH
