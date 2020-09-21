@@ -210,6 +210,7 @@ on Windows 10:
 	(note: you can open command prompt and type echo %PATH% to make sure it's correct)
     - Blender
     - Meshlab
+    - CloudCompare
 
  
 	
