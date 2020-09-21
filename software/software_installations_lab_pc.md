@@ -187,3 +187,12 @@ notes while installing docker:
 	sudo ln -s /home/christina/Documents/Pictures ZavouPic and then cd ZavouPic and with pwd i will see /home/christina/ZavouPic
 	or if you want the link to be permanent: remove flag -s
 	to remove a symlink: just use "rm ZavouPic"
+
+
+on Windows 10:
+    - MATLAB (use UCY license)
+    - Pycharm Professional (use UCY license)
+    - Git (and run git config like above)
+    - Visual Studio Community 2019
+    - OpenGL
+        get the binaries for your platform (in linux or mac you need to compile them. in windows there are pre-compiled binaries available) from https://www.glfw.org/download.html
