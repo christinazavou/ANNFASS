@@ -194,5 +194,11 @@ on Windows 10:
     - Pycharm Professional (use UCY license)
     - Git (and run git config like above)
     - Visual Studio Community 2019
+    - Cmake 
+    	download zip file from https://cmake.org/download/
+	extract it
+	place it in desire location (I place it under C:\Program Files)
+	edit the environment path (System Properties -> Environment Variables -> Add "C:\Program Files\cmake-3.18.2-win64-x64\bin" in Path)
+	now if you open command prompt and write cmake you should see its usage
     - OpenGL
         get the binaries for your platform (in linux or mac you need to compile them. in windows there are pre-compiled binaries available) from https://www.glfw.org/download.html
