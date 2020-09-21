@@ -202,3 +202,12 @@ on Windows 10:
 	now if you open command prompt and write cmake you should see its usage
     - OpenGL
         get the binaries for your platform (in linux or mac you need to compile them. in windows there are pre-compiled binaries available) from https://www.glfw.org/download.html
+    - OpenCV (install using the pre-built binaries)
+	download .exe from https://sourceforge.net/projects/opencvlibrary/ and extract it (run .exe as administrator) under C:\Program Files\OpenCV4.4.0
+	add envioronment path OPENCV_DIR to "C:\Program Files\OpenCV4.4.0\opencv\build\x64\vc15"
+	add "%OPENCV_DIR%\bin" in PATH environment virable to be able to use dynamic library as well
+	(note: you can open command prompt and type echo %PATH% to make sure it's correct)
+
+
+ 
+	
