@@ -208,7 +208,7 @@ on Windows 10:
 	add envioronment path OPENCV_DIR to "C:\Program Files\OpenCV4.4.0\opencv\build\x64\vc15"
 	add "%OPENCV_DIR%\bin" in PATH environment virable to be able to use dynamic library as well
 	(note: you can open command prompt and type echo %PATH% to make sure it's correct)
-
+    - Blender
 
  
 	
