@@ -209,6 +209,7 @@ on Windows 10:
 	add "%OPENCV_DIR%\bin" in PATH environment virable to be able to use dynamic library as well
 	(note: you can open command prompt and type echo %PATH% to make sure it's correct)
     - Blender
+    - Meshlab
 
  
 	
