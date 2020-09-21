@@ -190,6 +190,7 @@ notes while installing docker:
 
 
 on Windows 10:
+---
     - MATLAB (use UCY license)
     - Pycharm Professional (use UCY license)
     - Git (and run git config like above)
