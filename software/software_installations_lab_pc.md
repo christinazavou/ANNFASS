@@ -214,6 +214,8 @@ on Windows 10:
     - Slack
     - MinGW
       download and run mingw-get-setup.exe, select basic installation packages & Apply Changes, add "C:\MinGW\bin" in the Path environment variable
+      with the basic installation you basiclly installed gcc and g++ as well as msys (under C:\MinGW) which is an alternative to PowerShell and it defaults to bash. You can launch Bash with "C:\MinGW\msys\1.0\bin\bash.exe". You can add msys to your environment variables to use it directly by adding to Path "C:\MinGW\msys\1.0\bin".
+
 
  
 	
