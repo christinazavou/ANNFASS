@@ -211,6 +211,9 @@ on Windows 10:
     - Blender
     - Meshlab
     - CloudCompare
+    - Slack
+    - MinGW
+      download and run mingw-get-setup.exe, select basic installation packages & Apply Changes, add "C:\MinGW\bin" in the Path environment variable
 
  
 	
