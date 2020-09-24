@@ -219,3 +219,4 @@ on Windows 10:
       (note: commmand prompt now is using bash!)]
     - Python (run installation .exe file with custom options and check the box to add location in path environment)
     - Visual Studio Code
+    - cuda_10.1.105_418.96_win10.exe
