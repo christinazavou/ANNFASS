@@ -59,6 +59,21 @@ Saliency can be seen as a segmentation problem...i.e. categorizing pixels...
 #### LiDAR
 LiDAR sensor uses pulses of light to mesure the distance of all points to our object of interest
 
+Common Terms in Computer Vision
+---
+
+#### Contour
+What happens if we find the edges in this image? That is, we mark all pixels that are next to a very different depth as black, and the rest as white?
+With this simple procedure we have something that starts to look like a line drawing. These curves are called the contours, and drawing contours is the foundation of realistic line drawing.
+The contour separates visible parts of the surface from hidden parts.
+
+
+#### HOG (Histogram of oriented gradients)
+Counts occurrences of gradient orientation in localized portions of an image.
+
+i.e. for example:
+navigate through pixels of your image (you need to define first your pixel size), and calculate the x-grandient and y-gradient i.e. going from pixel value 50 to 100 means gradient (absolute) magnitude 50..use also gradient orientation..and create a histogram..
+
 Common Terms in Deep Learning
 ---
 

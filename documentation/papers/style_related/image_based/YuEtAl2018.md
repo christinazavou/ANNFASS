@@ -29,7 +29,7 @@ as you see in fig1 given a collection of many objects the method can cluster the
 We use the discriminatively detected mid-level patches as filters to perform feature encoding based on a sliding-window convolutional operation. We use these features as per-view initial features and **conduct multi-view feature fusion and selection via PSLF**.
 
 #### The difference with the other deep-learning approaches:
-- they have labels of similarity and they just learn an encoding and the similarity metric .. we learn to spatially locate style patches.s
+- they have labels of similarity and they just learn an encoding and the similarity metric .. we learn to spatially locate style patches.
 - they focus on style-driven shape retrieval, trying to learn a specialized shape similarity ... we face **style classification/clustering** and **style patch extraction**
 - they adapt metric learning to learn a global style metric...we adapt PSLF clustering to help us select and locate style feature patches
 
