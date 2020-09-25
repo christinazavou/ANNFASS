@@ -219,4 +219,4 @@ on Windows 10:
       (note: commmand prompt now is using bash!)]
     - Python (run installation .exe file with custom options and check the box to add location in path environment)
     - Visual Studio Code
-    - cuda_10.1.105_418.96_win10.exe
+    - cuda_10.1.105_418.96_win10.exe and cudnn-10.1-windows10-x64-v8.0.2.39.zip (extract it and copy files in desired locations under C:\Program Files\NVIDIA GPU Computing Toolkit\CUDA\v10.1)
