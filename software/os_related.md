@@ -214,3 +214,8 @@ I read all of the following guides and combined them. (First read them all):
 - [Generated the recommended partitions](https://itsfoss.com/install-ubuntu-dual-boot-mode-windows/)
 - [Made UEFI Ubuntu usb with GPT partitioning using Rufus on Windows](https://www.itzgeek.com/post/how-to-install-ubuntu-20-04-alongside-with-windows-10-in-dual-boot/)
 - [Used nouveau.modeset=0 before installing Ubuntu](https://medium.com/@rohan.kuntoji/dual-booting-ubuntu-16-04-18-04-lts-along-side-windows-10-in-asus-rog-strix-gl503vd-fy254t-238bc685d4b2) and during restarting Ubuntu and then [installed nvidia drivers](https://askubuntu.com/questions/747314/is-nomodeset-still-required) - look [here](https://askubuntu.com/questions/1053150/nouveau-modeset0) and [here](https://askubuntu.com/questions/951046/unable-to-install-nvidia-drivers-unable-to-locate-package) too
+
+
+
+**NOTE**:
+Because of this crazy configuration of having one partition as home(/home) and one partition as root(/) defaut in ubuntu UI is to not let you do things in root except if you use sudo!
