@@ -188,6 +188,24 @@ notes while installing docker:
 	or if you want the link to be permanent: remove flag -s
 	to remove a symlink: just use "rm ZavouPic"
 
+17. ```sudo snap install clion --classic```
+
+18. 
+
+```
+sudo apt install build-essential
+sudo apt -y install gcc-4 g++-4 gcc-5 g++-5 gcc-6 g++-6 gcc-7 g++-7 gcc-8 g++-8 gcc-9 g++-9
+```
+
+19. for language input
+```sudo apt install ibus-m17n``` 
+```
+sudo apt install gnome-tweaks
+gnome-tweaks
+Go to Keyboard+Mouse -> go to additional layout options -> Switching Layout options -> select one
+```
+
+
 
 on Windows 10:
 ---
