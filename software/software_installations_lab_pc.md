@@ -205,6 +205,7 @@ gnome-tweaks
 Go to Keyboard+Mouse -> go to additional layout options -> Switching Layout options -> select one
 ```
 
+20. download matlab zip, extract it, sudo ./install , save in /usr/lib/MATLAB/R2020b, create symbolic links in /usr/local/bin
 
 
 on Windows 10:
