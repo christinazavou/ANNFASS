@@ -1,5 +1,5 @@
 ---
-##### 1. Point Cloud file (.pts)
+##### 1. [Point Cloud file (.ply)](http://paulbourke.net/dataformats/ply/)
 
 The file contains X,Y,Z,Scalar(intesity),R(red),G(green),B(blue)
 
@@ -43,4 +43,3 @@ vt is for texture map ...e.g. look at [uv map](https://medium.com/@sdixon3/uv-ma
  - should open it in a text editor and make sure the paths are correct (better use relative paths)
 
 
-##### 5. [.ply](http://paulbourke.net/dataformats/ply/)
