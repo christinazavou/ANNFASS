@@ -9,7 +9,7 @@ If you open such file in [CloudCompare](ComputerVisionTools.md/#1.CloudCompare),
 
  - should open it in a text editor and make sure the paths are correct (better use relative paths)
 
-##### 3. Object file (.obj)
+##### 3. [Object file (.obj)](http://paulbourke.net/dataformats/obj/)
 
  - uses .mtl files
  
@@ -30,7 +30,7 @@ note:
 vt is for texture map ...e.g. look at [uv map](https://medium.com/@sdixon3/uv-mapping-texturing-and-shaders-rigging-and-animation-be9b4ddf0d48), we need a mapping from a vertex (3D point) into a 2D point of the map..
     
 
-###### .mtl file
+###### [.mtl file](http://paulbourke.net/dataformats/mtl/)
 
 - kd: diffuse
 - ka: ambient
