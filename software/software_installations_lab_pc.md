@@ -207,6 +207,7 @@ Go to Keyboard+Mouse -> go to additional layout options -> Switching Layout opti
 
 20. download matlab zip, extract it, sudo ./install , save in /usr/lib/MATLAB/R2020b, create symbolic links in /usr/local/bin
 
+21. sudo snap install blender --classic
 
 on Windows 10:
 ---
