@@ -41,3 +41,6 @@ vt is for texture map ...e.g. look at [uv map](https://medium.com/@sdixon3/uv-ma
 
  - can open with Maya or Blender
  - should open it in a text editor and make sure the paths are correct (better use relative paths)
+
+
+##### 5. [.ply](http://paulbourke.net/dataformats/ply/)
