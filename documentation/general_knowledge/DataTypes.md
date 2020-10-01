@@ -26,6 +26,10 @@ If you open such file in [CloudCompare](ComputerVisionTools.md/#1.CloudCompare),
     - usemtl <name>: search for that name in mtl files (specified by mllib) and apply the rules of that name in the following faces
     
 
+note:
+vt is for texture map ...e.g. look at [uv map](https://medium.com/@sdixon3/uv-mapping-texturing-and-shaders-rigging-and-animation-be9b4ddf0d48), we need a mapping from a vertex (3D point) into a 2D point of the map..
+    
+
 ###### .mtl file
 
 - kd: diffuse
