@@ -5,8 +5,14 @@ envs_path=$2
 cuda_version=$3
 py_version=$4
 
+echo "------------------------------------------------"
+echo "env_name:      ${env_name}"
+echo "envs_path:     ${envs_path}"
+echo "cuda_version:  ${cuda_version}"
+echo "py_version:    ${py_version}"
+echo "------------------------------------------------"
 
-conda create --name $env_name python=$py_version
+conda create --yes --name $env_name python=$py_version
 
 scripts_path=$envs_path/$env_name/etc/conda
 

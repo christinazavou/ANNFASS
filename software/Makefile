@@ -1,5 +1,7 @@
 SHELL := /bin/bash # otherwise we can't use "source"
 
+conda_dir=/home/christina/miniconda3
+
 rm-OCNN:
 	export PATH=/home/graphicslab/anaconda3/bin/:$$PATH \
 		&& conda env remove -n OCNN 
@@ -56,3 +58,21 @@ init-OCNN3: make-OCNN3
 
 save-OCNN3:
 	conda activate OCNN3 && conda env export > OCNN3.yml
+
+
+rm-projstyle:
+	export PATH=${conda_dir}/bin/:$$PATH \
+		&& conda env remove -n projstyle
+
+make-projstyle: rm-projstyle
+	export PATH=${conda_dir}/bin/:$$PATH \
+		&& sh create_conda_env_with_cuda.sh projstyle "${conda_dir}/envs/" 10.1 3.7.5
+
+init-projstyle: make-projstyle
+	export PATH=${conda_dir}/bin/:$$PATH \
+		&& source activate projstyle
+
+save-projstyle:
+	export PATH=${conda_dir}/bin/:$$PATH \
+		&& conda activate projstyle && conda env export > projstyle.yml
+
