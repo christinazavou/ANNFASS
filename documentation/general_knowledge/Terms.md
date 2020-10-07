@@ -1,4 +1,4 @@
----
+
 Representation of 3D objects:
 ---
 
@@ -67,6 +67,8 @@ What happens if we find the edges in this image? That is, we mark all pixels tha
 With this simple procedure we have something that starts to look like a line drawing. These curves are called the contours, and drawing contours is the foundation of realistic line drawing.
 The contour separates visible parts of the surface from hidden parts.
 
+Keywords related: salient lines, silhouette, canny edge, wireframe, crease, contour lines, descriptive-curves-flow-rep
+Repos related: shapepfcn
 
 #### HOG (Histogram of oriented gradients)
 Counts occurrences of gradient orientation in localized portions of an image.
