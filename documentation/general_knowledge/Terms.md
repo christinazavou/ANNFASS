@@ -76,6 +76,15 @@ Counts occurrences of gradient orientation in localized portions of an image.
 i.e. for example:
 navigate through pixels of your image (you need to define first your pixel size), and calculate the x-grandient and y-gradient i.e. going from pixel value 50 to 100 means gradient (absolute) magnitude 50..use also gradient orientation..and create a histogram..
 
+#### [RGB vs HSV](https://handmap.github.io/hsv-vs-rgb/)
+
+RGB is defined by listing how much red, green and blue is contained in a single value. It uses an additive method where the more of each colour is added, the brighter it becomes.
+
+HSV on the other hand uses three paramters to describe colour: Hue, Saturation, Value
+![](../figures/hsv.png)
+With HSV with we now describe our colour using a much more cement method as we only theoretically need to transform the Hue to capture the ‘red’ like colour.
+
+
 Common Terms in Deep Learning
 ---
 

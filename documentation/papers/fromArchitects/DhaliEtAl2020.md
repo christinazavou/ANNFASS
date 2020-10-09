@@ -1,5 +1,4 @@
-Feature-extraction methods for historical manuscript dating based on
-writing style development
+Feature-extraction methods for historical manuscript dating based on writing style development
 ---
 
 ### Goal
