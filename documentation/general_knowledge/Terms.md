@@ -62,14 +62,6 @@ LiDAR sensor uses pulses of light to mesure the distance of all points to our ob
 Common Terms in Computer Vision
 ---
 
-#### Contour
-What happens if we find the edges in this image? That is, we mark all pixels that are next to a very different depth as black, and the rest as white?
-With this simple procedure we have something that starts to look like a line drawing. These curves are called the contours, and drawing contours is the foundation of realistic line drawing.
-The contour separates visible parts of the surface from hidden parts.
-
-Keywords related: salient lines, silhouette, canny edge, wireframe, crease, contour lines, descriptive-curves-flow-rep
-Repos related: shapepfcn
-
 #### HOG (Histogram of oriented gradients)
 Counts occurrences of gradient orientation in localized portions of an image.
 
@@ -83,6 +75,49 @@ RGB is defined by listing how much red, green and blue is contained in a single 
 HSV on the other hand uses three paramters to describe colour: Hue, Saturation, Value
 ![](../figures/hsv.png)
 With HSV with we now describe our colour using a much more cement method as we only theoretically need to transform the Hue to capture the ‘red’ like colour.
+
+#### Non-photorealistic rendering
+NPR is an area of computer graphics that focuses on enabling a wide variety of expressive styles for digital art, in contrast to traditional computer graphics, which focuses on photorealism.
+
+#### Arc Length
+The distance between two points along a section of a curve.
+You can approximate this distance by summing the lenghts of smaller straight line segments on this curve.
+
+#### Gaussian smoothing
+2D convolution operator used to "blur" images and remove detail and noise.
+This is similar to t mean filter, since it outputs a "weighted average" of each pixel's neighbourhood, but this is more smooth as it gives more weight to central pixels.
+ 
+#### Toon shading
+ is a type of non-photorealistic rendering designed to make 3-D computer graphics appear to be flat by using less shading color instead of a shade gradient or tints and shades.
+
+#### Linear perspective
+In linear perspective, we imagine that the viewer’s eye—or the camera center—is a single point in space, and there is an invisible plane between the scene and the viewpoint, called the image plane. Imagine drawing a line between a point in the scene and the viewer’s eye. The point where this line intersects the image plane is where you draw that point.
+
+#### Contour
+What happens if we find the edges in this image? That is, we mark all pixels that are next to a very different depth as black, and the rest as white?
+With this simple procedure we have something that starts to look like a line drawing. These curves are called the contours, and drawing contours is the foundation of realistic line drawing.
+The contour separates visible parts of the surface from hidden parts.
+
+Keywords related: salient lines, silhouette, canny edge, wireframe, crease, contour lines, descriptive-curves-flow-rep
+Repos related: shapepfcn
+
+#### Basic stylization
+Once we have the contours, we can create different kinds of stylized rendering. For example, we can put them on top of a “toon shaded” rendering to create a cartoon style. Or we can draw just the contours, but use stylized curves that look like brush strokes.
+
+An example for stylistic brush strokes algorithm is to use principal curvature directions.
+
+#### Suggestive Contours algorithm
+draws lines at dark valleys of a particular image rendering
+
+#### Apparent Ridges algorithm
+draws lines at large gradients of a particular rendering
+
+#### (NPR:) line drawing methods (comparison)
+On a survey, Apparent Ridges did slightly better on models with a lot of creases (especially “bumps”), and Suggestive Contours did a bit better on some other models.
+
+"I think one reason Apparent Ridges scores well is that it essentially subsumes creases, whereas Suggestive Contours needs to be combined with creases, and combining multiple curve formulations causes issues that haven’t been addressed yet by current algorithms. On the other hand, Apparent Ridges (as currently formulated) can’t create junctions, e.g., where 3 creases come together, and cases like this are not penalized much by current evaluation metrics."
+ 
+If we draw lines through just the completely black pixels in a grayscale image, we get the contours. If we draw lines through not just the black pixels but also the darkest regions of the image, then we get also the suggestive contours.
 
 
 Common Terms in Deep Learning
