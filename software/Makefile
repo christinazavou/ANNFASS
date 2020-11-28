@@ -33,10 +33,12 @@ make-TF_TORCH: rm-TF_TORCH
 init-TF_TORCH: make-TF_TORCH
 	export PATH=${conda_dir}/bin/:$$PATH \
 		&& source activate TF_TORCH \
-		&& conda install -c anaconda pytest tensorflow-gpu==1.14.0 \
+		&& conda install -c anaconda pytest scikit-image tensorflow-gpu==1.14.0 \
 		&& conda install -c conda-forge yacs tqdm matplotlib \
+		&& conda install -c intel scikit-learn \
 		&& conda install gast==0.2.2 numpy==1.16.4 \
 		&& conda install pytorch torchvision cudatoolkit=10.1 -c pytorch \
+		&& conda install pandas \
 		&& pip install tensorboard visdom
 
 save-TF_TORCH:
@@ -57,7 +59,7 @@ init-STYLE: make-STYLE
 		&& source activate STYLE \
 		&& conda install pytorch torchvision cudatoolkit=10.1 -c pytorch \
 		&& conda install -c conda-forge matplotlib tqdm \
-		&& pip install tensorboard \
+		&& pip install tensorboard tensorboardX \
 		&& conda install -c plotly plotly=4.12.0 \
 		&& pip install visdom \
 		&& conda install -c anaconda pytest
