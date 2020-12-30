@@ -120,6 +120,18 @@ On a survey, Apparent Ridges did slightly better on models with a lot of creases
 If we draw lines through just the completely black pixels in a grayscale image, we get the contours. If we draw lines through not just the black pixels but also the darkest regions of the image, then we get also the suggestive contours.
 
 
+#### Intersection over Union [https://www.youtube.com/watch?v=ANIzQ5G-XPE&ab_channel=Deeplearning.ai]
+
+#### NonMax suppression [https://www.youtube.com/watch?v=VAo84c1hQX8&ab_channel=Deeplearning.ai]
+
+#### Yolo Algorithm & Anchor Boxes [https://www.youtube.com/watch?v=9s_FpMpdYW8&ab_channel=Deeplearning.ai] [https://www.youtube.com/watch?v=RTlwl2bv0Tg&ab_channel=Deeplearning.ai]
+
+
+nice for cosine: https://www.youtube.com/watch?v=U6uFOIURcD0&ab_channel=ShusenWang
+
+fewshotlearning: https://www.youtube.com/watch?v=U6uFOIURcD0&ab_channel=ShusenWang
+
+
 Common Terms in Deep Learning
 ---
 

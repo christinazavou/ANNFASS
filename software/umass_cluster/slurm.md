@@ -49,3 +49,12 @@ Useful to get the status of cluster:
     There is expplicit time limit for the job
     the command /bin/hostname will be executed on the first node in the allocation (where the script runs).
     Then the other two job steps initiated with srun will be executed sequentially
+
+  
+SOS
+---
+
+interactive jobs ==> "srun"
+non interactive ==> "sbatch"
+
+~~~~

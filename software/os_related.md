@@ -219,3 +219,18 @@ I read all of the following guides and combined them. (First read them all):
 
 **NOTE**:
 Because of this crazy configuration of having one partition as home(/home) and one partition as root(/) defaut in ubuntu UI is to not let you do things in root except if you use sudo!
+
+
+/dev/null
+---
+A special file that’s present in every single Linux system. However, unlike most other virtual files, instead of reading, it’s used to write. Whatever you write to /dev/null will be discarded, forgotten into the void. It’s known as the null device in a UNIX system.
+
+e.g. $ grep -r hello /sys/ 2> /dev/null will write all errors (output code is 2)) in /dev/null instead of printing them in stdout i.e. terminal
+e.g. $ ping google.com 1> /dev/null 
+
+note: 
+  Exit code 0        Success
+  Exit code 1        General errors, Miscellaneous errors, such as "divide by zero" and other impermissible operations
+  Exit code 2        Misuse of shell builtins (according to Bash documentation)        Example: empty_function() {}
+  
+      
