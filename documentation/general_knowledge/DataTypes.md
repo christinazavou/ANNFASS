@@ -43,3 +43,5 @@ vt is for texture map ...e.g. look at [uv map](https://medium.com/@sdixon3/uv-ma
  - should open it in a text editor and make sure the paths are correct (better use relative paths)
 
 
+
+For texture files --- > see [mipmap](https://www.imaginationtech.com/blog/why-you-really-should-be-using-mipmapping-in-your-graphics-applications/)
