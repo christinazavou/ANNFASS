@@ -206,3 +206,10 @@ More similar vectors will result in a larger number. Calculating the cosine dist
 
 The softmax function takes a vector of real numbers and forces them into a range of 0 to 1 with the sum of all the numbers equaling 1. One other nice property of softmax is that one of the values is usually much bigger than the others.
 
+
+#### Bilinear Similarity
+https://math.stackexchange.com/questions/2916525/intuitive-difference-between-cosine-similarity-and-bilinear-similarity
+bilinear similarity reduces to cosine similarity when 𝑊 is identity matrix
+
+#### Hubness problem
+https://www.youtube.com/playlist?list=PLNWnqkAEYZk0Cb0dnKVhWFW7s43iIqiLZ
