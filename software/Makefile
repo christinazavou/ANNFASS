@@ -62,38 +62,9 @@ init-STYLE: make-STYLE
 		&& pip install tensorboard tensorboardX \
 		&& conda install -c plotly plotly=4.12.0 \
 		&& pip install visdom \
-		&& conda install -c anaconda pytest \
-		&& pip install open3d==0.8.0.0 \
-		&& pip install --upgrade google-api-python-client google-auth-httplib2 google-auth-oauthlib
+		&& conda install -c anaconda pytest
 
 save-STYLE:
 	export PATH=${conda_dir}/bin/:$$PATH \
 		&& conda activate STYLE && conda env export > STYLE.yml
 
-
-rm-match-net:
-	export PATH=${conda_dir}/bin/:$$PATH \
-		&& conda env remove -n match-net
-
-make-match-net: rm-match-net
-	export PATH=${conda_dir}/bin/:$$PATH \
-		&& sh create_conda_env_with_cuda.sh match-net "${conda_dir}/envs/" 10.1 3.7
-
-init-match-net: make-match-net
-	export PATH=${conda_dir}/bin/:$$PATH \
-		&& source activate match-net \
-		&& conda install -c anaconda tensorflow-gpu==1.14.0 \
-		&& conda install -c conda-forge yacs tqdm matplotlib \
-		&& conda install -c pytorch pytorch \
-		&& pip install scikit_image==0.13.0
-
-save-match-net:
-	export PATH=${conda_dir}/bin/:$$PATH \
-		&& conda activate match-net && conda env export > match-net.yml
-
-
-mink:
-	sudo apt install libopenblas-dev && conda create --yes --name mink python=3.7 && conda activate mink  && conda install pytorch cudatoolkit=10.2 -c pytorch && pip install MinkowskiEngine
-
-condaclean:
-	conda clean --all
