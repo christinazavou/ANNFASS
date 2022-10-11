@@ -1,0 +1,43 @@
+I will present the work done in WP5, which was dedicated to the development of the Style NN
+
+First i will tell you what were the objectives, then I will talk a bit about work related to Style Classification in Built Heritage and the difficulties of this task.
+Then we'll see what approach we followed and what results this had, and we will conclude with some proposolas for future work.
+
+Our goal was to formulate and code ... as well as train this network and test it on the data collected in WP3
+
+In related work, some researchers classified few architectural styles, others detect the architect of a building, and others estimate the construction period. In all the works either ML is used or simple DL models. The related work usually regards images, and their datatset consists of up to a few hundrends of images. In 2018 some work in the Computer Vision area attempted to classify architectural style from 3D data, however their data consist of simple meshes and their method belongs to conventional ML. In 2020 here was some applied research about cultural heritage with DL, however they use image data and their scope regards touristic purposes.
+
+Having said that, the main difficulty of our task is that architectural styles have developed from one another, so this makes it hard to distinguish styles that closely appear in time or region. The other difficulty, which is the main reason why related work is limited, is the limitation of the avaialbe data. What I mean is that publicly available online datasets are usually with images, and they rarely consist of style or period labels. Some data show houses and some data show monuments, but there is no global collection with a taxonomy (to be used as a benchmark, therefore, it slows down the research)
+
+So lets see our approach. I will first tell you what is the difference compared to existing work, then talk about the data we used, our methods and evaluation framework/scheme.
+
+The first thing that is different is that we use more than a thousand buildings and this had made it feasible for us to apply complex DL architectures. Our classifier is trained to classify 7 styles, and this happens on the component level, with 3D data as the input. The 3D data is well suited for our scope which is to help architect experts analyse their models.
+
+The data we used are 3D components extracted from buildings. In this way we have more data than buildings, and we can infer the style of any hybrid building, like the ones appearing often in Cyprus. We used the 30 cypriot buildings collected in WP3 as well as the buildings collected from 3dWarehouse. From these we annotated a subset of 100 buildings with the keyword "religious" in their name, as those were more likely to consist of a style. Indeed, only 50 of these were looking like real buildings and could get a label from our architect experts. From these buildings we only looked at 10 classes of components that are likely indicating a style and we finally used only windows, doors, columns, towers and domes as these appeared more often and with lower probability of segmentation errors. We need to note here that our style detection framework runs with the prerequisite of having structure annotations. In our platform we assume that the architect can first run the structure ANN and depending on that result we can use our style detection. 
+
+To get our collection we automatically extracted components by merging submeshes of the same structure using some distance-based heuristics. Then we had to find duplicate components, so that we consider unique components only once. This is necessary because buildings usually have repeated elements.
+
+Here we see the final dataset. The total labeled components are about 2 hundrends and the unlabeled ones are about 3 thousands. This means that we can split the labeled set into one training (named B) and one test set (named C) that will be used for our supervised classifier. To make those splits we consider all components from the same building in the same set, and all 7 styles appearing in both sets.
+
+To make use of our data we experimented with multiple possible representations. Going with a 2D approach we extracted either line drawings (that fall onto edges or suggestive contours) or texture renderings and in both ways we get images from multiple viewpoints. The texture rendering has more detail, however both approaches can result in noisy data becuase they require rendering which can go wrong especially if the viewpoint is not ideal and the data are generated from different modelers with different parameters.
+
+Going with a 3D approach we create either voxels, octrees or point clouds. Voxel has a straightforward implementation where the bounding box of the model is split into constant sized cubes and each cube  represents a boolean of occupancy information. An octree is a better representation that builds on this approach, but further splits the occupied cubes up to a maximum depth. The point cloud representation samples the surface of the model and represents each sampled point with its coordinate and any extra information like the color of that location. The sparse point cloud allows us to quantize and process a huge point cloud. Each of these representations can be used with a different type of a NN as we will later see.
+
+Since we have a big unlabeled dataset, our proposal was to use that in a pretext task. Our hypothesis was that there must be other tasks that can train a network in order to learn meaningful reperesentations of 3D data, which can be further used to train a simple model like an SVM to do the classification.
+
+We have explored a few options for the pretext task. One is the reconstruction, where for example you can input an image to a network with a bottleneck architecture and expect to get the same image as the output (reconstruct the same image from a small hidden representation). Another one is the shape synthesis, where you can insert two shapes in a network and expect to get a new one that combines the two and is a meaningful shape. The third one is part segmentation, similar to the one presented in WP4 where locations of specific components are found from the input building.
+
+We wanted to reuse existing work as much as possible. For the 2D reconstruction we made a convolutional ae. For the point cloud reconsturction we used the work of Zamorski et al with an adversarial AE and for sparse point clouds we used Minksowski based Variational Autoencoder.
+For the shape generation task we used a Generative Adversarial Network proposed by Chen et al and for part semgentation we considered an octree based network and a minkowski based network introduced in Choy et al
+
+For evaluation we used 5 fold cross validation, and repeated the runs 5 times to report the average F1 score, which is a harmonic mean of how good the predictions are and how many missed cases we have.
+
+Here we have the results of each approach. As baselines we had a random prediction and the conventional method of Yu et al which does not leverage our unlabeled data. These two have the lower performance as expected. The best results were obtained with the reconstruction approach of Minkowski based network. We can see the minkowski based part segmentation also performs well but not as good as reconstruction. You can see the pointnet ae performs bad while the 2d ae is the second best approach. This could be explained by the context used by the model, as we will see in the following slide. Decorgan method didn't perform as good as we hoped, maybe due to the simplicity of the voxel representation.
+
+"maybe because its using its capacity to learn things that are not useful for style"
+
+Here we show 4 examples obtained by the winner approach. The real data appears on the left and the predictions are on the right. You can see that the context can be useful especially in cases were segmentation is not correct like the tower appearing in the first building, which looks like a neoclassiccism column rather than an ottoman tower.
+
+Concluding, we showed a framework that is flexible enough to use various pretext takss, and to classify any new building as is, without rebuilding the model.
+
+In the future we could improve our method with combining multiple approaches in one, or adding the chronological...
